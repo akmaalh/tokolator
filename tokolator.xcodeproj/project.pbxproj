@@ -53,6 +53,11 @@
 			children = (
 				16836DA22C3EA0F200C1024A /* tokolatorApp.swift */,
 				16836DA42C3EA0F200C1024A /* ContentView.swift */,
+				16836DB32C3EA68100C1024A /* Services */,
+				16836DB02C3EA62B00C1024A /* Model */,
+				16836DB12C3EA63C00C1024A /* View */,
+				16836DB22C3EA65300C1024A /* ViewModel */,
+				16836DB42C3EA69B00C1024A /* Utils */,
 				16836DA62C3EA0F400C1024A /* Assets.xcassets */,
 				16836DA82C3EA0F400C1024A /* Preview Content */,
 			);
@@ -65,6 +70,41 @@
 				16836DA92C3EA0F400C1024A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		16836DB02C3EA62B00C1024A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		16836DB12C3EA63C00C1024A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		16836DB22C3EA65300C1024A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		16836DB32C3EA68100C1024A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		16836DB42C3EA69B00C1024A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
