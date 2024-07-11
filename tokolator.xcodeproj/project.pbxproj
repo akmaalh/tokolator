@@ -71,9 +71,9 @@
 			children = (
 				16836DA22C3EA0F200C1024A /* tokolatorApp.swift */,
 				16836DB32C3EA68100C1024A /* Services */,
-				16836DB02C3EA62B00C1024A /* Model */,
-				16836DB12C3EA63C00C1024A /* View */,
-				16836DB22C3EA65300C1024A /* ViewModel */,
+				16836DB02C3EA62B00C1024A /* Models */,
+				16836DB12C3EA63C00C1024A /* Views */,
+				16836DB22C3EA65300C1024A /* ViewModels */,
 				16836DB42C3EA69B00C1024A /* Utils */,
 				16836DA62C3EA0F400C1024A /* Assets.xcassets */,
 				16836DA82C3EA0F400C1024A /* Preview Content */,
@@ -89,15 +89,15 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		16836DB02C3EA62B00C1024A /* Model */ = {
+		16836DB02C3EA62B00C1024A /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				16836DB72C3EA75200C1024A /* Item.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		16836DB12C3EA63C00C1024A /* View */ = {
+		16836DB12C3EA63C00C1024A /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				16836DA42C3EA0F200C1024A /* ContentView.swift */,
@@ -105,15 +105,15 @@
 				53983E412C3FC58B0028CCF6 /* Cashier */,
 				53983E382C3FC3420028CCF6 /* Inventory */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		16836DB22C3EA65300C1024A /* ViewModel */ = {
+		16836DB22C3EA65300C1024A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				16836DBB2C3EA79900C1024A /* CashierViewModel.swift */,
 			);
-			path = ViewModel;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		16836DB32C3EA68100C1024A /* Services */ = {
