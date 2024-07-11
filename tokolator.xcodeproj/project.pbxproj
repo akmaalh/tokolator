@@ -16,6 +16,10 @@
 		16836DBA2C3EA76B00C1024A /* CashierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DB92C3EA76B00C1024A /* CashierView.swift */; };
 		16836DBC2C3EA79900C1024A /* CashierViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DBB2C3EA79900C1024A /* CashierViewModel.swift */; };
 		16836DBE2C3EA7F800C1024A /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DBD2C3EA7F800C1024A /* Util.swift */; };
+		53983E372C3FBE2C0028CCF6 /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E362C3FBE2C0028CCF6 /* InventoryView.swift */; };
+		53983E3C2C3FC3820028CCF6 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E3B2C3FC3820028CCF6 /* AddItemView.swift */; };
+		53983E3E2C3FC4450028CCF6 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E3D2C3FC4450028CCF6 /* ItemDetailView.swift */; };
+		53983E402C3FC4F20028CCF6 /* RestockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E3F2C3FC4F20028CCF6 /* RestockView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +33,10 @@
 		16836DB92C3EA76B00C1024A /* CashierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashierView.swift; sourceTree = "<group>"; };
 		16836DBB2C3EA79900C1024A /* CashierViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashierViewModel.swift; sourceTree = "<group>"; };
 		16836DBD2C3EA7F800C1024A /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		53983E362C3FBE2C0028CCF6 /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
+		53983E3B2C3FC3820028CCF6 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
+		53983E3D2C3FC4450028CCF6 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
+		53983E3F2C3FC4F20028CCF6 /* RestockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestockView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,11 +70,10 @@
 			isa = PBXGroup;
 			children = (
 				16836DA22C3EA0F200C1024A /* tokolatorApp.swift */,
-				16836DA42C3EA0F200C1024A /* ContentView.swift */,
 				16836DB32C3EA68100C1024A /* Services */,
-				16836DB02C3EA62B00C1024A /* Model */,
-				16836DB12C3EA63C00C1024A /* View */,
-				16836DB22C3EA65300C1024A /* ViewModel */,
+				16836DB02C3EA62B00C1024A /* Models */,
+				16836DB12C3EA63C00C1024A /* Views */,
+				16836DB22C3EA65300C1024A /* ViewModels */,
 				16836DB42C3EA69B00C1024A /* Utils */,
 				16836DA62C3EA0F400C1024A /* Assets.xcassets */,
 				16836DA82C3EA0F400C1024A /* Preview Content */,
@@ -82,28 +89,31 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		16836DB02C3EA62B00C1024A /* Model */ = {
+		16836DB02C3EA62B00C1024A /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				16836DB72C3EA75200C1024A /* Item.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		16836DB12C3EA63C00C1024A /* View */ = {
+		16836DB12C3EA63C00C1024A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				16836DB92C3EA76B00C1024A /* CashierView.swift */,
+				16836DA42C3EA0F200C1024A /* ContentView.swift */,
+				53983E422C3FC5940028CCF6 /* History */,
+				53983E412C3FC58B0028CCF6 /* Cashier */,
+				53983E382C3FC3420028CCF6 /* Inventory */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		16836DB22C3EA65300C1024A /* ViewModel */ = {
+		16836DB22C3EA65300C1024A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				16836DBB2C3EA79900C1024A /* CashierViewModel.swift */,
 			);
-			path = ViewModel;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		16836DB32C3EA68100C1024A /* Services */ = {
@@ -120,6 +130,32 @@
 				16836DBD2C3EA7F800C1024A /* Util.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		53983E382C3FC3420028CCF6 /* Inventory */ = {
+			isa = PBXGroup;
+			children = (
+				53983E362C3FBE2C0028CCF6 /* InventoryView.swift */,
+				53983E3B2C3FC3820028CCF6 /* AddItemView.swift */,
+				53983E3D2C3FC4450028CCF6 /* ItemDetailView.swift */,
+				53983E3F2C3FC4F20028CCF6 /* RestockView.swift */,
+			);
+			path = Inventory;
+			sourceTree = "<group>";
+		};
+		53983E412C3FC58B0028CCF6 /* Cashier */ = {
+			isa = PBXGroup;
+			children = (
+				16836DB92C3EA76B00C1024A /* CashierView.swift */,
+			);
+			path = Cashier;
+			sourceTree = "<group>";
+		};
+		53983E422C3FC5940028CCF6 /* History */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,13 +228,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53983E3E2C3FC4450028CCF6 /* ItemDetailView.swift in Sources */,
 				16836DBC2C3EA79900C1024A /* CashierViewModel.swift in Sources */,
+				53983E3C2C3FC3820028CCF6 /* AddItemView.swift in Sources */,
 				16836DBA2C3EA76B00C1024A /* CashierView.swift in Sources */,
 				16836DB82C3EA75200C1024A /* Item.swift in Sources */,
 				16836DA52C3EA0F200C1024A /* ContentView.swift in Sources */,
+				53983E402C3FC4F20028CCF6 /* RestockView.swift in Sources */,
 				16836DBE2C3EA7F800C1024A /* Util.swift in Sources */,
 				16836DA32C3EA0F200C1024A /* tokolatorApp.swift in Sources */,
 				16836DB62C3EA74100C1024A /* Service.swift in Sources */,
+				53983E372C3FBE2C0028CCF6 /* InventoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
