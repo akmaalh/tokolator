@@ -16,6 +16,11 @@
 		16836DBA2C3EA76B00C1024A /* CashierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DB92C3EA76B00C1024A /* CashierView.swift */; };
 		16836DBC2C3EA79900C1024A /* CashierViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DBB2C3EA79900C1024A /* CashierViewModel.swift */; };
 		16836DBE2C3EA7F800C1024A /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DBD2C3EA7F800C1024A /* Util.swift */; };
+		16836DC42C3FD02900C1024A /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DC32C3FD02900C1024A /* TransactionView.swift */; };
+		16836DC62C3FD1C100C1024A /* DailyCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DC52C3FD1C100C1024A /* DailyCardView.swift */; };
+		16836DC82C3FDE6400C1024A /* DateMonthPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DC72C3FDE6400C1024A /* DateMonthPicker.swift */; };
+		16836DCA2C40619000C1024A /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DC92C40619000C1024A /* Transaction.swift */; };
+		16836DCC2C4061EF00C1024A /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DCB2C4061EF00C1024A /* TransactionViewModel.swift */; };
 		53983E372C3FBE2C0028CCF6 /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E362C3FBE2C0028CCF6 /* InventoryView.swift */; };
 		53983E3C2C3FC3820028CCF6 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E3B2C3FC3820028CCF6 /* AddItemView.swift */; };
 		53983E3E2C3FC4450028CCF6 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E3D2C3FC4450028CCF6 /* ItemDetailView.swift */; };
@@ -33,6 +38,11 @@
 		16836DB92C3EA76B00C1024A /* CashierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashierView.swift; sourceTree = "<group>"; };
 		16836DBB2C3EA79900C1024A /* CashierViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashierViewModel.swift; sourceTree = "<group>"; };
 		16836DBD2C3EA7F800C1024A /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		16836DC32C3FD02900C1024A /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
+		16836DC52C3FD1C100C1024A /* DailyCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCardView.swift; sourceTree = "<group>"; };
+		16836DC72C3FDE6400C1024A /* DateMonthPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthPicker.swift; sourceTree = "<group>"; };
+		16836DC92C40619000C1024A /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		16836DCB2C4061EF00C1024A /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
 		53983E362C3FBE2C0028CCF6 /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
 		53983E3B2C3FC3820028CCF6 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
 		53983E3D2C3FC4450028CCF6 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
@@ -93,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				16836DB72C3EA75200C1024A /* Item.swift */,
+				16836DC92C40619000C1024A /* Transaction.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -104,6 +115,7 @@
 				53983E422C3FC5940028CCF6 /* History */,
 				53983E412C3FC58B0028CCF6 /* Cashier */,
 				53983E382C3FC3420028CCF6 /* Inventory */,
+				16836DC22C3FD00600C1024A /* Transaction */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -112,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				16836DBB2C3EA79900C1024A /* CashierViewModel.swift */,
+				16836DCB2C4061EF00C1024A /* TransactionViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -130,6 +143,16 @@
 				16836DBD2C3EA7F800C1024A /* Util.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		16836DC22C3FD00600C1024A /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				16836DC32C3FD02900C1024A /* TransactionView.swift */,
+				16836DC72C3FDE6400C1024A /* DateMonthPicker.swift */,
+				16836DC52C3FD1C100C1024A /* DailyCardView.swift */,
+			);
+			path = Transaction;
 			sourceTree = "<group>";
 		};
 		53983E382C3FC3420028CCF6 /* Inventory */ = {
@@ -230,15 +253,20 @@
 			files = (
 				53983E3E2C3FC4450028CCF6 /* ItemDetailView.swift in Sources */,
 				16836DBC2C3EA79900C1024A /* CashierViewModel.swift in Sources */,
+				16836DC62C3FD1C100C1024A /* DailyCardView.swift in Sources */,
 				53983E3C2C3FC3820028CCF6 /* AddItemView.swift in Sources */,
 				16836DBA2C3EA76B00C1024A /* CashierView.swift in Sources */,
 				16836DB82C3EA75200C1024A /* Item.swift in Sources */,
+				16836DC42C3FD02900C1024A /* TransactionView.swift in Sources */,
+				16836DCC2C4061EF00C1024A /* TransactionViewModel.swift in Sources */,
 				16836DA52C3EA0F200C1024A /* ContentView.swift in Sources */,
 				53983E402C3FC4F20028CCF6 /* RestockView.swift in Sources */,
 				16836DBE2C3EA7F800C1024A /* Util.swift in Sources */,
 				16836DA32C3EA0F200C1024A /* tokolatorApp.swift in Sources */,
 				16836DB62C3EA74100C1024A /* Service.swift in Sources */,
+				16836DC82C3FDE6400C1024A /* DateMonthPicker.swift in Sources */,
 				53983E372C3FBE2C0028CCF6 /* InventoryView.swift in Sources */,
+				16836DCA2C40619000C1024A /* Transaction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
