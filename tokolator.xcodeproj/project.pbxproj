@@ -70,7 +70,6 @@
 			isa = PBXGroup;
 			children = (
 				16836DA22C3EA0F200C1024A /* tokolatorApp.swift */,
-				16836DA42C3EA0F200C1024A /* ContentView.swift */,
 				16836DB32C3EA68100C1024A /* Services */,
 				16836DB02C3EA62B00C1024A /* Model */,
 				16836DB12C3EA63C00C1024A /* View */,
@@ -101,8 +100,10 @@
 		16836DB12C3EA63C00C1024A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				16836DA42C3EA0F200C1024A /* ContentView.swift */,
+				53983E422C3FC5940028CCF6 /* History */,
+				53983E412C3FC58B0028CCF6 /* Cashier */,
 				53983E382C3FC3420028CCF6 /* Inventory */,
-				16836DB92C3EA76B00C1024A /* CashierView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -140,6 +141,21 @@
 				53983E3F2C3FC4F20028CCF6 /* RestockView.swift */,
 			);
 			path = Inventory;
+			sourceTree = "<group>";
+		};
+		53983E412C3FC58B0028CCF6 /* Cashier */ = {
+			isa = PBXGroup;
+			children = (
+				16836DB92C3EA76B00C1024A /* CashierView.swift */,
+			);
+			path = Cashier;
+			sourceTree = "<group>";
+		};
+		53983E422C3FC5940028CCF6 /* History */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
