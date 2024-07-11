@@ -1,24 +1,31 @@
-//
-//  ContentView.swift
-//  tokolator
-//
-//  Created by Akmal Hakim on 10/07/24.
-//
-
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, Tokolator")
+        TabView {
+            InventoryView()
+                .tabItem {
+                    Text("Inventory")
+                    Image(systemName: "bag")
+                }
+            
+            Text("Calculator")
+                .tabItem {
+                    Text("Calculator")
+                    Image(systemName: "plus.forwardslash.minus")
+                }
+            
+            Text("Transactions")
+                .tabItem {
+                    Text("Transactions")
+                    Image(systemName: "newspaper")
+                }
         }
-        .padding()
     }
 }
 
 #Preview {
     ContentView()
+        .modelContainer(for: Item.self, inMemory: true)
 }
