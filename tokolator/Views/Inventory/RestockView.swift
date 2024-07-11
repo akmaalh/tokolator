@@ -18,7 +18,7 @@ class RestockItem: Identifiable {
 struct RestockView: View {
     @Environment(\.presentationMode) private var presentationMode
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \Item.name) private var items: [Item]
+    @Query(sort: \Item.timestamp, order: .reverse) private var items: [Item]
     @FocusState private var focusedField: Field?
     
     @State private var restockItems: [RestockItem] = []
