@@ -9,35 +9,51 @@ struct InventoryView: View {
     
     var body: some View {
         VStack {
-            List {
-                ForEach(items) { item in
+            if items.isEmpty {
+                ContentUnavailableView(label: {
+                    Label("Empty Inventory", systemImage: "shippingbox")
+                }, description: {
+                    Text("You do not have any items in your inventory")
+                }, actions: {
                     Button(action: {
-                        selectedItem = item
-                    }) {
-                        Text("\(item.name) [\(item.stock)]")
-                            .foregroundColor(Color.primary)
+                        isAddItemViewPresented = true
+                    }, label: {
+                        Text("Add Item")
+                    })
+                    .buttonStyle(.borderedProminent)
+                })
+            } else {
+                List {
+                    ForEach(items) { item in
+                        Button(action: {
+                            selectedItem = item
+                        }) {
+                            Text("\(item.name) [\(item.stock)]")
+                                .foregroundColor(Color.primary)
+                        }
                     }
                 }
-            }
-            
-            Spacer()
-            
-            HStack {
-                Button(action: {
-                    isAddItemViewPresented = true
-                }, label: {
-                    Text("Add Item")
-                })
-                .buttonStyle(.borderedProminent)
                 
-                Button(action: {
-                    isRestockViewPresented = true
-                }, label: {
-                    Text("Restock")
-                })
-                .buttonStyle(.borderedProminent)
+                Spacer()
+                
+                HStack {
+                    Button(action: {
+                        isAddItemViewPresented = true
+                    }, label: {
+                        Text("Add Item")
+                    })
+                    .buttonStyle(.borderedProminent)
+                    
+                    Button(action: {
+                        isRestockViewPresented = true
+                    }, label: {
+                        Text("Restock")
+                    })
+                    .buttonStyle(.borderedProminent)
+                    .disabled(items.isEmpty)
+                }
+                .padding()
             }
-            .padding()
         }
         .sheet(item: $selectedItem) { item in
             ItemDetailView(item: item)

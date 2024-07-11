@@ -50,84 +50,71 @@ struct RestockView: View {
     
     var body: some View {
         NavigationView {
-            if items.isEmpty {
-                ContentUnavailableView(label: {
-                    Label("No Items to Restock", systemImage: "shippingbox")
-                }, description: {
-                    Text("You do not have any items in your inventory")
-                })
-                .navigationBarItems(leading: Button("Cancel") {
-                    presentationMode.wrappedValue.dismiss()
-                })
-            } else {
-                Form {
-                    ForEach(restockItems.indices, id: \.self) { index in
-                        let restockItem = $restockItems[index]
-                        
-                        Section(header: Text("Item \(index + 1)")) {
-                            Picker("Select an item", selection: restockItem.itemId) {
-                                ForEach(items) { item in
-                                    Text(item.name)
-                                        .tag(item.id as UUID?)
-                                }
+            Form {
+                ForEach(restockItems.indices, id: \.self) { index in
+                    let restockItem = $restockItems[index]
+                    
+                    Section(header: Text("Item \(index + 1)")) {
+                        Picker("Select an item", selection: restockItem.itemId) {
+                            ForEach(items) { item in
+                                Text(item.name)
+                                    .tag(item.id as UUID?)
                             }
-                            .pickerStyle(MenuPickerStyle())
-                            
-                            HStack {
-                                Text("Quantity")
-                                TextField("Quantity", value: restockItem.quantity, format: .number)
-                                    .keyboardType(.numberPad)
-                                    .focused($focusedField, equals: .quantity)
-                            }
-                            
-                            HStack {
-                                Text("Price")
-                                TextField("Price", value: restockItem.price, format: .number)
-                                    .keyboardType(.numberPad)
-                                    .focused($focusedField, equals: .price)
-                            }
-                            
-                            Button(action: {
-                                restockItems.remove(at: index)
-                            }, label: {
-                                Text("Remove Item")
-                            })
-                            .tint(Color.red)
                         }
-                    }
-                    
-                    Section {
+                        .pickerStyle(MenuPickerStyle())
+                        
+                        HStack {
+                            Text("Quantity")
+                            TextField("Quantity", value: restockItem.quantity, format: .number)
+                                .keyboardType(.numberPad)
+                                .focused($focusedField, equals: .quantity)
+                        }
+                        
+                        HStack {
+                            Text("Price")
+                            TextField("Price", value: restockItem.price, format: .number)
+                                .keyboardType(.numberPad)
+                                .focused($focusedField, equals: .price)
+                        }
+                        
                         Button(action: {
-                            if let firstItemId = items.first?.id {
-                                restockItems.append(RestockItem(itemId: firstItemId))
-                            }
+                            restockItems.remove(at: index)
                         }, label: {
-                            Text("Add Item to Restock")
+                            Text("Remove Item")
                         })
+                        .tint(Color.red)
                     }
-                    
-                    
-                    Button(action: {
-                        restock()
-                    }, label: {
-                        Text("Restock Items")
-                    })
-                    .tint(Color.green)
-                    .disabled(!isFormValid || restockItems.isEmpty)
-                    
                 }
-                .navigationTitle("Restock Items")
-                .navigationBarItems(leading: Button("Cancel") {
-                    presentationMode.wrappedValue.dismiss()
+                
+                Section {
+                    Button(action: {
+                        if let firstItemId = items.first?.id {
+                            restockItems.append(RestockItem(itemId: firstItemId))
+                        }
+                    }, label: {
+                        Text("Add Item to Restock")
+                    })
+                }
+                
+                
+                Button(action: {
+                    restock()
+                }, label: {
+                    Text("Restock Items")
                 })
-                .onAppear {
-                    if restockItems.isEmpty, let firstItemId = items.first?.id {
-                        restockItems = [RestockItem(itemId: firstItemId)]
-                    }
+                .tint(Color.green)
+                .disabled(!isFormValid || restockItems.isEmpty)
+                
+            }
+            .navigationTitle("Restock Items")
+            .navigationBarItems(leading: Button("Cancel") {
+                presentationMode.wrappedValue.dismiss()
+            })
+            .onAppear {
+                if restockItems.isEmpty, let firstItemId = items.first?.id {
+                    restockItems = [RestockItem(itemId: firstItemId)]
                 }
             }
-            
-            
         }
     }
 }
