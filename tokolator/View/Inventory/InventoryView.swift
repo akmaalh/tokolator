@@ -40,10 +40,10 @@ struct InventoryView: View {
             .padding()
         }
         .sheet(item: $selectedItem) { item in
-//            ItemDetailView(item: item)
+            ItemDetailView(item: item)
         }
         .sheet(isPresented: $isRestockViewPresented) {
-//            RestockView()
+            RestockView()
         }
         .sheet(isPresented: $isAddItemViewPresented) {
             AddItemView()

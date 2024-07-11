@@ -18,6 +18,8 @@
 		16836DBE2C3EA7F800C1024A /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DBD2C3EA7F800C1024A /* Util.swift */; };
 		53983E372C3FBE2C0028CCF6 /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E362C3FBE2C0028CCF6 /* InventoryView.swift */; };
 		53983E3C2C3FC3820028CCF6 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E3B2C3FC3820028CCF6 /* AddItemView.swift */; };
+		53983E3E2C3FC4450028CCF6 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E3D2C3FC4450028CCF6 /* ItemDetailView.swift */; };
+		53983E402C3FC4F20028CCF6 /* RestockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E3F2C3FC4F20028CCF6 /* RestockView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		16836DBD2C3EA7F800C1024A /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		53983E362C3FBE2C0028CCF6 /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
 		53983E3B2C3FC3820028CCF6 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
+		53983E3D2C3FC4450028CCF6 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
+		53983E3F2C3FC4F20028CCF6 /* RestockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestockView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +136,8 @@
 			children = (
 				53983E362C3FBE2C0028CCF6 /* InventoryView.swift */,
 				53983E3B2C3FC3820028CCF6 /* AddItemView.swift */,
+				53983E3D2C3FC4450028CCF6 /* ItemDetailView.swift */,
+				53983E3F2C3FC4F20028CCF6 /* RestockView.swift */,
 			);
 			path = Inventory;
 			sourceTree = "<group>";
@@ -206,11 +212,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53983E3E2C3FC4450028CCF6 /* ItemDetailView.swift in Sources */,
 				16836DBC2C3EA79900C1024A /* CashierViewModel.swift in Sources */,
 				53983E3C2C3FC3820028CCF6 /* AddItemView.swift in Sources */,
 				16836DBA2C3EA76B00C1024A /* CashierView.swift in Sources */,
 				16836DB82C3EA75200C1024A /* Item.swift in Sources */,
 				16836DA52C3EA0F200C1024A /* ContentView.swift in Sources */,
+				53983E402C3FC4F20028CCF6 /* RestockView.swift in Sources */,
 				16836DBE2C3EA7F800C1024A /* Util.swift in Sources */,
 				16836DA32C3EA0F200C1024A /* tokolatorApp.swift in Sources */,
 				16836DB62C3EA74100C1024A /* Service.swift in Sources */,
