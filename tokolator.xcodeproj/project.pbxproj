@@ -17,6 +17,7 @@
 		16836DBC2C3EA79900C1024A /* CashierViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DBB2C3EA79900C1024A /* CashierViewModel.swift */; };
 		16836DBE2C3EA7F800C1024A /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DBD2C3EA7F800C1024A /* Util.swift */; };
 		53983E372C3FBE2C0028CCF6 /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E362C3FBE2C0028CCF6 /* InventoryView.swift */; };
+		53983E3C2C3FC3820028CCF6 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E3B2C3FC3820028CCF6 /* AddItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		16836DBB2C3EA79900C1024A /* CashierViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashierViewModel.swift; sourceTree = "<group>"; };
 		16836DBD2C3EA7F800C1024A /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		53983E362C3FBE2C0028CCF6 /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
+		53983E3B2C3FC3820028CCF6 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +97,8 @@
 		16836DB12C3EA63C00C1024A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				53983E382C3FC3420028CCF6 /* Inventory */,
 				16836DB92C3EA76B00C1024A /* CashierView.swift */,
-				53983E362C3FBE2C0028CCF6 /* InventoryView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -123,6 +125,15 @@
 				16836DBD2C3EA7F800C1024A /* Util.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		53983E382C3FC3420028CCF6 /* Inventory */ = {
+			isa = PBXGroup;
+			children = (
+				53983E362C3FBE2C0028CCF6 /* InventoryView.swift */,
+				53983E3B2C3FC3820028CCF6 /* AddItemView.swift */,
+			);
+			path = Inventory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				16836DBC2C3EA79900C1024A /* CashierViewModel.swift in Sources */,
+				53983E3C2C3FC3820028CCF6 /* AddItemView.swift in Sources */,
 				16836DBA2C3EA76B00C1024A /* CashierView.swift in Sources */,
 				16836DB82C3EA75200C1024A /* Item.swift in Sources */,
 				16836DA52C3EA0F200C1024A /* ContentView.swift in Sources */,

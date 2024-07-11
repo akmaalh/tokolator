@@ -46,7 +46,7 @@ struct InventoryView: View {
 //            RestockView()
         }
         .sheet(isPresented: $isAddItemViewPresented) {
-//            AddItemView()
+            AddItemView()
         }
     }
 }
