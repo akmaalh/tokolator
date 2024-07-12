@@ -18,39 +18,32 @@ struct ItemDetailView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Item Image")) {
-                    if let imageData = item.image ,
-                       let uiImage = UIImage(data: imageData) {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: 300)
+                Section(header: Text("Item Details")) {
+                    HStack {
+                        Text("Price (Rp)")
+                        TextField("Price", value: $newPrice, format: .number)
+                            .keyboardType(.numberPad)
                     }
                 }
                 
-                Section(header: Text("Item Details")) {
-                    Text(item.name)
-                    TextField("Price", value: $newPrice, format: .number)
-                        .keyboardType(.numberPad)
+                Section {
+                    Button(action: {
+                        saveItem()
+                    }, label: {
+                        Text("Save")
+                    })
+                    .tint(Color.green)
+                    .disabled(!isPriceChanged)
+                    
+                    Button(action: {
+                        deleteItems(item: item)
+                    }, label: {
+                        Text("Delete")
+                    })
+                    .tint(Color.red)
                 }
-                
-                
-                Button(action: {
-                    saveItem()
-                }, label: {
-                    Text("Save")
-                })
-                .tint(Color.green)
-                .disabled(!isPriceChanged)
-                
-                Button(action: {
-                    deleteItems(item: item)
-                }, label: {
-                    Text("Delete")
-                })
-                .tint(Color.red)
             }
-            .navigationTitle("Edit Item")
+            .navigationTitle("\(item.name)")
             .navigationBarItems(leading: Button("Cancel") {
                 presentationMode.wrappedValue.dismiss()
             })
