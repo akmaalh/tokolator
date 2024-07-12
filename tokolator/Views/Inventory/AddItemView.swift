@@ -9,12 +9,27 @@ struct AddItemView: View {
     @State private var item = Item()
     
     @State private var name: String = ""
-    @State private var price: Int = 0
+    @State private var price: String = ""
     @State private var selectedPhoto: PhotosPickerItem?
     
     var body: some View {
         NavigationView {
             Form {
+                Section(header: Text("Item Details")) {
+                    HStack() {
+                        Text("Name")
+                            .frame(width: 80, alignment: .leading)
+                        TextField("Name", text: $name)
+                    }
+                    
+                    HStack {
+                        Text("Price (Rp)")
+                            .frame(width: 80, alignment: .leading)
+                        TextField("Price", text: $price)
+                            .keyboardType(.numberPad)
+                    }
+                }
+                
                 Section(header: Text("Item Image")) {
                     if let imageData = item.image ,
                        let uiImage = UIImage(data: imageData) {
@@ -26,10 +41,15 @@ struct AddItemView: View {
                     
                     PhotosPicker(selection: $selectedPhoto, matching: .images, photoLibrary: .shared()) {
                         if selectedPhoto == nil {
-                            Label("Add Image", systemImage: "photo")
+                            HStack {
+                                Image(systemName: "photo")
+                                Text("Add Image")
+                            }
                         } else {
-                            Label("Change Image", systemImage: "photo")
-                            
+                            HStack {
+                                Image(systemName: "photo")
+                                Text("Change Image")
+                            }
                         }
                     }
                     
@@ -40,24 +60,27 @@ struct AddItemView: View {
                                 item.image = nil
                             }
                         } label: {
-                            Label("Remove Image", systemImage: "trash")
-                                .foregroundColor(Color.red)
+                            HStack {
+                                Image(systemName: "trash")
+                                Text("Remove Image")
+                            }
                         }
+                        .tint(Color.red)
                     }
                 }
                 
-                Section(header: Text("Item Details")) {
-                    TextField("Name", text: $name)
-                    TextField("Price", value: $price, format: .number)
-                        .keyboardType(.numberPad)
+                Section {
+                    Button(action: {
+                        addItem()
+                    }) {
+                        HStack {
+                            Image(systemName: "plus")
+                            Text("Add Item to Inventory")
+                        }
+                    }
+                    .tint(Color.green)
+                    .disabled(name.isEmpty || price.isEmpty || selectedPhoto == nil)
                 }
-                
-                Button(action: {
-                   addItem()
-                }) {
-                    Text("Add")
-                }
-                .disabled(name.isEmpty || selectedPhoto == nil)
             }
             .navigationTitle("Add New Item")
             .navigationBarItems(leading: Button("Cancel") {
@@ -73,7 +96,7 @@ struct AddItemView: View {
     
     private func addItem() {
         item.name = name
-        item.price = price
+        item.price = Int(price)!
         
         modelContext.insert(item)
         presentationMode.wrappedValue.dismiss()
