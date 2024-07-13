@@ -25,6 +25,10 @@
 		53983E3C2C3FC3820028CCF6 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E3B2C3FC3820028CCF6 /* AddItemView.swift */; };
 		53983E3E2C3FC4450028CCF6 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E3D2C3FC4450028CCF6 /* ItemDetailView.swift */; };
 		53983E402C3FC4F20028CCF6 /* RestockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E3F2C3FC4F20028CCF6 /* RestockView.swift */; };
+		8F288DA62C41FF8A005B20A5 /* ControlButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F288DA52C41FF85005B20A5 /* ControlButtons.swift */; };
+		8F288DA82C41FFB7005B20A5 /* ItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F288DA72C41FFAC005B20A5 /* ItemRow.swift */; };
+		8F288DAA2C42008F005B20A5 /* ItemCountAdjustSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F288DA92C420084005B20A5 /* ItemCountAdjustSheet.swift */; };
+		8F288DAC2C4200B1005B20A5 /* SummarySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F288DAB2C4200AB005B20A5 /* SummarySheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +51,10 @@
 		53983E3B2C3FC3820028CCF6 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
 		53983E3D2C3FC4450028CCF6 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
 		53983E3F2C3FC4F20028CCF6 /* RestockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestockView.swift; sourceTree = "<group>"; };
+		8F288DA52C41FF85005B20A5 /* ControlButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButtons.swift; sourceTree = "<group>"; };
+		8F288DA72C41FFAC005B20A5 /* ItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRow.swift; sourceTree = "<group>"; };
+		8F288DA92C420084005B20A5 /* ItemCountAdjustSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCountAdjustSheet.swift; sourceTree = "<group>"; };
+		8F288DAB2C4200AB005B20A5 /* SummarySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummarySheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +177,7 @@
 		53983E412C3FC58B0028CCF6 /* Cashier */ = {
 			isa = PBXGroup;
 			children = (
+				8F288DA42C41FF7B005B20A5 /* Components */,
 				16836DB92C3EA76B00C1024A /* CashierView.swift */,
 			);
 			path = Cashier;
@@ -179,6 +188,17 @@
 			children = (
 			);
 			path = History;
+			sourceTree = "<group>";
+		};
+		8F288DA42C41FF7B005B20A5 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8F288DAB2C4200AB005B20A5 /* SummarySheet.swift */,
+				8F288DA92C420084005B20A5 /* ItemCountAdjustSheet.swift */,
+				8F288DA72C41FFAC005B20A5 /* ItemRow.swift */,
+				8F288DA52C41FF85005B20A5 /* ControlButtons.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,12 +278,16 @@
 				16836DBA2C3EA76B00C1024A /* CashierView.swift in Sources */,
 				16836DB82C3EA75200C1024A /* Item.swift in Sources */,
 				16836DC42C3FD02900C1024A /* TransactionView.swift in Sources */,
+				8F288DA62C41FF8A005B20A5 /* ControlButtons.swift in Sources */,
 				16836DCC2C4061EF00C1024A /* TransactionViewModel.swift in Sources */,
+				8F288DA82C41FFB7005B20A5 /* ItemRow.swift in Sources */,
 				16836DA52C3EA0F200C1024A /* ContentView.swift in Sources */,
 				53983E402C3FC4F20028CCF6 /* RestockView.swift in Sources */,
+				8F288DAC2C4200B1005B20A5 /* SummarySheet.swift in Sources */,
 				16836DBE2C3EA7F800C1024A /* Util.swift in Sources */,
 				16836DA32C3EA0F200C1024A /* tokolatorApp.swift in Sources */,
 				16836DB62C3EA74100C1024A /* Service.swift in Sources */,
+				8F288DAA2C42008F005B20A5 /* ItemCountAdjustSheet.swift in Sources */,
 				16836DC82C3FDE6400C1024A /* DateMonthPicker.swift in Sources */,
 				53983E372C3FBE2C0028CCF6 /* InventoryView.swift in Sources */,
 				16836DCA2C40619000C1024A /* Transaction.swift in Sources */,
@@ -400,7 +424,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"tokolator/Preview Content\"";
-				DEVELOPMENT_TEAM = XJ7Y6VR3NN;
+				DEVELOPMENT_TEAM = A23N5QDWR3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -429,7 +453,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"tokolator/Preview Content\"";
-				DEVELOPMENT_TEAM = XJ7Y6VR3NN;
+				DEVELOPMENT_TEAM = A23N5QDWR3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
