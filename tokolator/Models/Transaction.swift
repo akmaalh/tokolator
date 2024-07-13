@@ -27,14 +27,22 @@ class Restock {
 
 @Model
 class Transaction {
-    var date: Date
-    var details: [TransactionDetail]
+    var id: UUID
+    var itemId: UUID
+    var itemName: String
+    var quantity: Int
+    var price: Int
     var type: TransactionType
+    var timestamp: Date
 
-    init(type: TransactionType, date: Date) {
-        self.date = date
-        self.details = []
-        self.type = type
+    init(detail: TransactionDetail) {
+        self.id = detail.id
+        self.itemId = detail.itemId
+        self.itemName = detail.itemName
+        self.quantity = detail.quantity
+        self.price = detail.price
+        self.type = detail.type
+        self.timestamp = Date()
     }
 }
 
@@ -61,3 +69,5 @@ enum TransactionType: String, Codable {
     case income
     case expense
 }
+
+

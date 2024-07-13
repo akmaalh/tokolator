@@ -5,7 +5,9 @@ import SwiftData
 struct tokolatorApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self
+            Item.self,
+            Transaction.self,
+            TransactionDetail.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
