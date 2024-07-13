@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 import PhotosUI
+import Combine
 
 struct AddItemView: View {
     @Environment(\.presentationMode) private var presentationMode
@@ -11,12 +12,13 @@ struct AddItemView: View {
     @State private var name: String = ""
     @State private var price: String = ""
     @State private var selectedPhoto: PhotosPickerItem?
+    @State private var showAlert = false
     
     var body: some View {
         NavigationView {
             Form {
                 Section(header: Text("Item Details")) {
-                    HStack() {
+                    HStack {
                         Text("Name")
                             .frame(width: 80, alignment: .leading)
                         TextField("Name", text: $name)
@@ -27,16 +29,22 @@ struct AddItemView: View {
                             .frame(width: 80, alignment: .leading)
                         TextField("Price", text: $price)
                             .keyboardType(.numberPad)
+                            .onReceive(Just(price)) { newValue in
+                                let filtered = newValue.filter { "0123456789".contains($0) }
+                                if filtered != newValue {
+                                    self.price = filtered
+                                }
+                            }
                     }
                 }
                 
                 Section(header: Text("Item Image")) {
-                    if let imageData = item.image ,
+                    if let imageData = item.image,
                        let uiImage = UIImage(data: imageData) {
                         Image(uiImage: uiImage)
                             .resizable()
                             .scaledToFit()
-                            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: 300)
+                            .frame(maxWidth: .infinity, maxHeight: 300)
                     }
                     
                     PhotosPicker(selection: $selectedPhoto, matching: .images, photoLibrary: .shared()) {
@@ -52,21 +60,6 @@ struct AddItemView: View {
                             }
                         }
                     }
-                    
-                    if item.image != nil {
-                        Button(role: .destructive) {
-                            withAnimation {
-                                selectedPhoto = nil
-                                item.image = nil
-                            }
-                        } label: {
-                            HStack {
-                                Image(systemName: "trash")
-                                Text("Remove Image")
-                            }
-                        }
-                        .tint(Color.red)
-                    }
                 }
                 
                 Section {
@@ -80,6 +73,15 @@ struct AddItemView: View {
                     }
                     .tint(Color.green)
                     .disabled(name.isEmpty || price.isEmpty || selectedPhoto == nil)
+                    .alert(isPresented: $showAlert) {
+                        Alert(
+                            title: Text("Item Added"),
+                            message: Text("The item has been successfully added to your inventory."),
+                            dismissButton: .default(Text("OK")) {
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                        )
+                    }
                 }
             }
             .navigationTitle("Add New Item")
@@ -96,9 +98,22 @@ struct AddItemView: View {
     
     private func addItem() {
         item.name = name
-        item.price = Int(price)!
+        
+        if let inputPrice = Int(price) {
+            item.price = inputPrice
+        } else {
+            item.price = 0
+        }
         
         modelContext.insert(item)
-        presentationMode.wrappedValue.dismiss()
+        
+        do {
+            try modelContext.save()
+            presentationMode.wrappedValue.dismiss()
+        } catch {
+            print("Failed to save item: \(error)")
+        }
+        
+        //        showAlert = true
     }
 }

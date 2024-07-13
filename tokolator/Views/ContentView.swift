@@ -16,13 +16,13 @@ struct ContentView: View {
                     Image(systemName: "plus.forwardslash.minus")
                 }
             
-            TransactionView()
-                .tabItem {
-                    Text("Transactions")
-                    Image(systemName: "newspaper")
-                }
-                .toolbarBackground(.visible, for: .tabBar)
-                .toolbarBackground(.navbarBG, for: .tabBar)
+//            TransactionView()
+//                .tabItem {
+//                    Text("Transactions")
+//                    Image(systemName: "newspaper")
+//                }
+//                .toolbarBackground(.visible, for: .tabBar)
+//                .toolbarBackground(.navbarBG, for: .tabBar)
         }
     }
 }

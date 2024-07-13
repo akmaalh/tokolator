@@ -3,7 +3,7 @@ import SwiftData
 
 struct InventoryView: View {
     @Query(sort: \Item.timestamp, order: .reverse) private var items: [Item]
-    @State private var selectedItem: Item? = nil
+    @State private var selectedItem: Item?
     @State private var isRestockViewPresented: Bool = false
     @State private var isAddItemViewPresented: Bool = false
     
@@ -14,47 +14,48 @@ struct InventoryView: View {
                     Label("Empty Inventory", systemImage: "shippingbox")
                 }, description: {
                     Text("You do not have any items in your inventory")
-                }, actions: {
-                    Button(action: {
-                        isAddItemViewPresented = true
-                    }, label: {
-                        Text("Add Item")
-                    })
-                    .buttonStyle(.borderedProminent)
-                })
+                }, actions: {})
             } else {
                 List {
                     ForEach(items) { item in
                         Button(action: {
                             selectedItem = item
                         }) {
-                            Text("\(item.name) [\(item.stock)]")
+                            Text("\(item.name) [Stock: \(item.stock)]")
                                 .foregroundColor(Color.primary)
                         }
                     }
                 }
-                
-                Spacer()
-                
-                HStack {
-                    Button(action: {
-                        isAddItemViewPresented = true
-                    }, label: {
-                        Text("Add Item")
-                    })
-                    .buttonStyle(.borderedProminent)
-                    
-                    Button(action: {
-                        isRestockViewPresented = true
-                    }, label: {
-                        Text("Restock")
-                    })
-                    .buttonStyle(.borderedProminent)
-                    .disabled(items.isEmpty)
-                }
-                .padding()
             }
+            
+            Spacer()
+            
+            HStack {
+                Button(action: {
+                    isRestockViewPresented = true
+                }) {
+                    Text("RESTOCK")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.large)
+                .disabled(items.isEmpty)
+                
+                Button(action: {
+                    isAddItemViewPresented = true
+                }) {
+                    Text("ADD ITEM")
+                        .frame(maxWidth: .infinity)
+                }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.large)
+            }
+            .padding()
+            .fontWeight(.heavy)
+            .background(.ultraThinMaterial)
+            .frame(maxWidth: .infinity)
         }
+        .frame(maxWidth: .infinity)
         .sheet(item: $selectedItem) { item in
             ItemDetailView(item: item)
         }
