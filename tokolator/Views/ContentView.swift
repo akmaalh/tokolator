@@ -2,6 +2,9 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    @Environment(\.modelContext) private var modelContext
+
+    
     var body: some View {
         TabView {
             InventoryView()
@@ -10,7 +13,7 @@ struct ContentView: View {
                     Image(systemName: "bag")
                 }
             
-            Text("Calculator")
+            CashierView(modelContext: modelContext)
                 .tabItem {
                     Text("Calculator")
                     Image(systemName: "plus.forwardslash.minus")
