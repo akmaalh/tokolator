@@ -25,11 +25,11 @@
 		53983E3C2C3FC3820028CCF6 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E3B2C3FC3820028CCF6 /* AddItemView.swift */; };
 		53983E3E2C3FC4450028CCF6 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E3D2C3FC4450028CCF6 /* ItemDetailView.swift */; };
 		53983E402C3FC4F20028CCF6 /* RestockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E3F2C3FC4F20028CCF6 /* RestockView.swift */; };
+		53983E442C4373860028CCF6 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E432C4373860028CCF6 /* Enums.swift */; };
 		8F288DA62C41FF8A005B20A5 /* ControlButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F288DA52C41FF85005B20A5 /* ControlButtons.swift */; };
 		8F288DA82C41FFB7005B20A5 /* ItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F288DA72C41FFAC005B20A5 /* ItemRow.swift */; };
 		8F288DAA2C42008F005B20A5 /* ItemCountAdjustSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F288DA92C420084005B20A5 /* ItemCountAdjustSheet.swift */; };
 		8F288DAC2C4200B1005B20A5 /* SummarySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F288DAB2C4200AB005B20A5 /* SummarySheet.swift */; };
-		53983E442C4373860028CCF6 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E432C4373860028CCF6 /* Enums.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,11 +52,11 @@
 		53983E3B2C3FC3820028CCF6 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
 		53983E3D2C3FC4450028CCF6 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
 		53983E3F2C3FC4F20028CCF6 /* RestockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestockView.swift; sourceTree = "<group>"; };
+		53983E432C4373860028CCF6 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		8F288DA52C41FF85005B20A5 /* ControlButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButtons.swift; sourceTree = "<group>"; };
 		8F288DA72C41FFAC005B20A5 /* ItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRow.swift; sourceTree = "<group>"; };
 		8F288DA92C420084005B20A5 /* ItemCountAdjustSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCountAdjustSheet.swift; sourceTree = "<group>"; };
 		8F288DAB2C4200AB005B20A5 /* SummarySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummarySheet.swift; sourceTree = "<group>"; };
-		53983E432C4373860028CCF6 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -428,7 +428,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"tokolator/Preview Content\"";
-				DEVELOPMENT_TEAM = A23N5QDWR3;
+				DEVELOPMENT_TEAM = XJ7Y6VR3NN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -457,7 +457,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"tokolator/Preview Content\"";
-				DEVELOPMENT_TEAM = A23N5QDWR3;
+				DEVELOPMENT_TEAM = XJ7Y6VR3NN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
