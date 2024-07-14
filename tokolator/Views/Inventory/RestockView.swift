@@ -23,10 +23,6 @@ struct RestockView: View {
     
     @State private var restockItems: [RestockItem] = []
     
-    private enum Field {
-        case price, quantity
-    }
-    
     private var isFormValid: Bool {
         for item in restockItems {
             if item.itemId == nil || item.quantity == nil || item.price == nil {

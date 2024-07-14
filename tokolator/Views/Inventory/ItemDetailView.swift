@@ -17,10 +17,6 @@ struct ItemDetailView: View {
     @State private var showDeleteConfirmationDialog = false
     @State private var confirmedToDelete = false
     
-    private enum Field {
-        case price
-    }
-    
     var body: some View {
         NavigationView {
             Form {

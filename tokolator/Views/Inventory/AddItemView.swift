@@ -16,10 +16,6 @@ struct AddItemView: View {
     
     @FocusState private var focusedField: Field?
     
-    private enum Field {
-        case name, price
-    }
-    
     var body: some View {
         NavigationView {
             Form {
