@@ -19,7 +19,7 @@ struct RestockView: View {
     @Environment(\.presentationMode) private var presentationMode
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Item.timestamp, order: .reverse) private var items: [Item]
-
+    
     @State private var restockItems: [RestockItem] = []
     @State private var showAlert = false
     
@@ -38,11 +38,22 @@ struct RestockView: View {
         for restockItem in restockItems {
             if let itemId = restockItem.itemId,
                let quantity = restockItem.quantity,
+               let price = restockItem.price,
                let itemIndex = items.firstIndex(where: { $0.id == itemId }) {
-                items[itemIndex].stock += quantity
+                let item = items[itemIndex]
+                
+                item.stock += quantity
+                
+                let transactionDetail = TransactionDetail(itemId: item.id, itemName: item.name, quantity: quantity, price: price, type: .expense)
+                
+                modelContext.insert(transactionDetail)
+                
+                let transaction = Transaction(detail: transactionDetail)
+                
+                modelContext.insert(transaction)
             }
         }
-            
+        
         showAlert = true
     }
     
@@ -64,7 +75,7 @@ struct RestockView: View {
                         HStack {
                             Text("Quantity")
                                 .frame(width: 80, alignment: .leading)
-
+                            
                             TextField("Quantity", value: restockItem.quantity, format: .number)
                                 .keyboardType(.numberPad)
                                 .focused($focusedField, equals: .quantity)
@@ -73,7 +84,7 @@ struct RestockView: View {
                         HStack {
                             Text("Price (Rp)")
                                 .frame(width: 80, alignment: .leading)
-
+                            
                             TextField("Price", value: restockItem.price, format: .number)
                                 .keyboardType(.numberPad)
                                 .focused($focusedField, equals: .price)
@@ -115,7 +126,7 @@ struct RestockView: View {
                             }
                         )
                     }
-
+                    
                 }
                 
             }
