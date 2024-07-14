@@ -64,14 +64,14 @@ struct InventoryView: View {
                                     .padding()
                                     .frame(height: 160)
                                 }
-                                .background(Color(uiColor: .systemGray6))
+                                .background(Color(uiColor: .systemGray5))
                                 .cornerRadius(10)
-                                .shadow(radius: 5)
                             }
                         }
                     }
                 }
                 .padding(.horizontal)
+                .padding(.top)
             }
             
             Spacer()
