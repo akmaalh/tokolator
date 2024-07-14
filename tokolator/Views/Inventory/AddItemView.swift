@@ -1,6 +1,7 @@
 import SwiftUI
 import SwiftData
 import PhotosUI
+import Combine
 
 struct AddItemView: View {
     @Environment(\.presentationMode) private var presentationMode
@@ -9,55 +10,83 @@ struct AddItemView: View {
     @State private var item = Item()
     
     @State private var name: String = ""
-    @State private var price: Int = 0
+    @State private var price: String = ""
     @State private var selectedPhoto: PhotosPickerItem?
+    @State private var showAlert = false
+    
+    @FocusState private var focusedField: Field?
     
     var body: some View {
         NavigationView {
             Form {
+                Section(header: Text("Item Details")) {
+                    HStack {
+                        Text("Name")
+                            .frame(width: 80, alignment: .leading)
+                        TextField("Name", text: $name)
+                            .focused($focusedField, equals: .name)
+                    }
+                    
+                    HStack {
+                        Text("Price (Rp)")
+                            .frame(width: 80, alignment: .leading)
+                        TextField("Price", text: $price)
+                            .focused($focusedField, equals: .price)
+                            .keyboardType(.numberPad)
+                            .onReceive(Just(price)) { newValue in
+                                let filtered = newValue.filter { "0123456789".contains($0) }
+                                if filtered != newValue {
+                                    self.price = filtered
+                                }
+                            }
+                    }
+                }
+                
                 Section(header: Text("Item Image")) {
-                    if let imageData = item.image ,
+                    if let imageData = item.image,
                        let uiImage = UIImage(data: imageData) {
                         Image(uiImage: uiImage)
                             .resizable()
                             .scaledToFit()
-                            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: 300)
+                            .frame(maxWidth: .infinity, maxHeight: 300)
                     }
                     
                     PhotosPicker(selection: $selectedPhoto, matching: .images, photoLibrary: .shared()) {
                         if selectedPhoto == nil {
-                            Label("Add Image", systemImage: "photo")
-                        } else {
-                            Label("Change Image", systemImage: "photo")
-                            
-                        }
-                    }
-                    
-                    if item.image != nil {
-                        Button(role: .destructive) {
-                            withAnimation {
-                                selectedPhoto = nil
-                                item.image = nil
+                            HStack {
+                                Image(systemName: "photo")
+                                Text("Add Image")
                             }
-                        } label: {
-                            Label("Remove Image", systemImage: "trash")
-                                .foregroundColor(Color.red)
+                        } else {
+                            HStack {
+                                Image(systemName: "photo")
+                                Text("Change Image")
+                            }
                         }
                     }
                 }
                 
-                Section(header: Text("Item Details")) {
-                    TextField("Name", text: $name)
-                    TextField("Price", value: $price, format: .number)
-                        .keyboardType(.numberPad)
+                Section {
+                    Button(action: {
+                        addItem()
+                    }) {
+                        HStack {
+                            Image(systemName: "plus")
+                            Text("Add Item to Inventory")
+                        }
+                    }
+                    .tint(Color.green)
+                    .disabled(name.isEmpty || price.isEmpty || selectedPhoto == nil)
+                    .alert(isPresented: $showAlert) {
+                        Alert(
+                            title: Text("Item Added"),
+                            message: Text("The item has been successfully added to your inventory."),
+                            dismissButton: .default(Text("OK")) {
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                        )
+                    }
                 }
-                
-                Button(action: {
-                   addItem()
-                }) {
-                    Text("Add")
-                }
-                .disabled(name.isEmpty || selectedPhoto == nil)
             }
             .navigationTitle("Add New Item")
             .navigationBarItems(leading: Button("Cancel") {
@@ -68,14 +97,31 @@ struct AddItemView: View {
                     item.image = data
                 }
             }
+            .toolbar {
+                ToolbarItem(placement: .keyboard) {
+                    HStack {
+                        Spacer()
+                        
+                        Button("Done") {
+                            focusedField = nil
+                        }
+                    }
+                }
+            }
         }
     }
     
     private func addItem() {
         item.name = name
-        item.price = price
+        
+        if let inputPrice = Int(price) {
+            item.price = inputPrice
+        } else {
+            item.price = 0
+        }
         
         modelContext.insert(item)
-        presentationMode.wrappedValue.dismiss()
+        
+        showAlert = true
     }
 }

@@ -19,13 +19,11 @@ struct RestockView: View {
     @Environment(\.presentationMode) private var presentationMode
     @Environment(\.modelContext) private var modelContext
     @Query(sort: \Item.timestamp, order: .reverse) private var items: [Item]
-    @FocusState private var focusedField: Field?
-    
+
     @State private var restockItems: [RestockItem] = []
+    @State private var showAlert = false
     
-    private enum Field {
-        case price, quantity
-    }
+    @FocusState private var focusedField: Field?
     
     private var isFormValid: Bool {
         for item in restockItems {
@@ -44,8 +42,8 @@ struct RestockView: View {
                 items[itemIndex].stock += quantity
             }
         }
-        
-        presentationMode.wrappedValue.dismiss()
+            
+        showAlert = true
     }
     
     var body: some View {
@@ -65,13 +63,17 @@ struct RestockView: View {
                         
                         HStack {
                             Text("Quantity")
+                                .frame(width: 80, alignment: .leading)
+
                             TextField("Quantity", value: restockItem.quantity, format: .number)
                                 .keyboardType(.numberPad)
                                 .focused($focusedField, equals: .quantity)
                         }
                         
                         HStack {
-                            Text("Price")
+                            Text("Price (Rp)")
+                                .frame(width: 80, alignment: .leading)
+
                             TextField("Price", value: restockItem.price, format: .number)
                                 .keyboardType(.numberPad)
                                 .focused($focusedField, equals: .price)
@@ -96,14 +98,25 @@ struct RestockView: View {
                     })
                 }
                 
-                
-                Button(action: {
-                    restock()
-                }, label: {
-                    Text("Restock Items")
-                })
-                .tint(Color.green)
-                .disabled(!isFormValid || restockItems.isEmpty)
+                Section {
+                    Button(action: {
+                        restock()
+                    }, label: {
+                        Text("Restock Items")
+                    })
+                    .tint(Color.green)
+                    .disabled(!isFormValid || restockItems.isEmpty)
+                    .alert(isPresented: $showAlert) {
+                        Alert(
+                            title: Text("Items Restocked"),
+                            message: Text("The items have been successfully restocked."),
+                            dismissButton: .default(Text("OK")) {
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                        )
+                    }
+
+                }
                 
             }
             .navigationTitle("Restock Items")
@@ -113,6 +126,17 @@ struct RestockView: View {
             .onAppear {
                 if restockItems.isEmpty, let firstItemId = items.first?.id {
                     restockItems = [RestockItem(itemId: firstItemId)]
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .keyboard) {
+                    HStack {
+                        Spacer()
+                        
+                        Button("Done") {
+                            focusedField = nil
+                        }
+                    }
                 }
             }
         }
