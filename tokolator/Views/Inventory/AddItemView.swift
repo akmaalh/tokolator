@@ -14,6 +14,12 @@ struct AddItemView: View {
     @State private var selectedPhoto: PhotosPickerItem?
     @State private var showAlert = false
     
+    @FocusState private var focusedField: Field?
+    
+    private enum Field {
+        case name, price
+    }
+    
     var body: some View {
         NavigationView {
             Form {
@@ -22,12 +28,14 @@ struct AddItemView: View {
                         Text("Name")
                             .frame(width: 80, alignment: .leading)
                         TextField("Name", text: $name)
+                            .focused($focusedField, equals: .name)
                     }
                     
                     HStack {
                         Text("Price (Rp)")
                             .frame(width: 80, alignment: .leading)
                         TextField("Price", text: $price)
+                            .focused($focusedField, equals: .price)
                             .keyboardType(.numberPad)
                             .onReceive(Just(price)) { newValue in
                                 let filtered = newValue.filter { "0123456789".contains($0) }
@@ -93,6 +101,17 @@ struct AddItemView: View {
                     item.image = data
                 }
             }
+            .toolbar {
+                ToolbarItem(placement: .keyboard) {
+                    HStack {
+                        Spacer()
+                        
+                        Button("Done") {
+                            focusedField = nil
+                        }
+                    }
+                }
+            }
         }
     }
     
@@ -107,13 +126,6 @@ struct AddItemView: View {
         
         modelContext.insert(item)
         
-        do {
-            try modelContext.save()
-            presentationMode.wrappedValue.dismiss()
-        } catch {
-            print("Failed to save item: \(error)")
-        }
-        
-        //        showAlert = true
+        showAlert = true
     }
 }

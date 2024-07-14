@@ -29,6 +29,7 @@ struct ItemDetailView: View {
                         Text("Price (Rp)")
                             .frame(width: 80, alignment: .leading)
                         TextField("Price", text: $newPrice)
+                            .focused($focusedField, equals: .price)
                             .keyboardType(.numberPad)
                             .onReceive(Just(newPrice)) { newValue in
                                 let filtered = newValue.filter { "0123456789".contains($0) }
@@ -84,15 +85,19 @@ struct ItemDetailView: View {
             .navigationBarItems(leading: Button("Cancel") {
                 presentationMode.wrappedValue.dismiss()
             })
-        }
-        .padding()
-        .toolbar {
-            ToolbarItem(placement: .keyboard) {
-                Button("Done") {
-                    focusedField = nil
+            .toolbar {
+                ToolbarItem(placement: .keyboard) {
+                    HStack {
+                        Spacer()
+                        
+                        Button("Done") {
+                            focusedField = nil
+                        }
+                    }
                 }
             }
         }
+        .padding()
         .onAppear {
             newPrice = String(item.price)
         }

@@ -16,21 +16,67 @@ struct InventoryView: View {
                     Text("You do not have any items in your inventory")
                 }, actions: {})
             } else {
-                List {
-                    ForEach(items) { item in
-                        Button(action: {
-                            selectedItem = item
-                        }) {
-                            Text("\(item.name) [Stock: \(item.stock)]")
-                                .foregroundColor(Color.primary)
+                let columns = [
+                    GridItem(.flexible()),
+                    GridItem(.flexible())
+                ]
+                
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: 8) {
+                        ForEach(items) { item in
+                            Button(action: {
+                                selectedItem = item
+                            }) {
+                                VStack(spacing: 0) {
+                                    VStack(spacing: 0) {
+                                        HStack {
+                                            Text("\(item.name)")
+                                                .font(.system(size: 20))
+                                                .lineLimit(1)
+                                                .foregroundColor(Color.primary)
+                                        }
+                                        .padding(.vertical, 4)
+                                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                                        .background(Color(uiColor: .systemGray))
+                                        
+                                        HStack {
+                                            Text("\(item.stock)")
+                                                .lineLimit(1)
+                                                .foregroundColor(Color.primary)
+                                        }
+                                        .padding(.vertical, 4)
+                                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                                        .background(Color(uiColor: .systemGray2))
+                                    }
+                                    .font(.system(size: 20))
+                                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                                    
+                                    VStack {
+                                        if let imageData = item.image,
+                                           let uiImage = UIImage(data: imageData) {
+                                            Image(uiImage: uiImage)
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                                            
+                                        }
+                                    }
+                                    .padding()
+                                    .frame(height: 160)
+                                }
+                                .background(Color(uiColor: .systemGray6))
+                                .cornerRadius(10)
+                                .shadow(radius: 5)
+                            }
                         }
                     }
                 }
+                .padding(.horizontal)
             }
             
             Spacer()
             
-            HStack {
+            HStack(spacing: 16) {
                 Button(action: {
                     isRestockViewPresented = true
                 }) {

@@ -115,6 +115,17 @@ struct RestockView: View {
                     restockItems = [RestockItem(itemId: firstItemId)]
                 }
             }
+            .toolbar {
+                ToolbarItem(placement: .keyboard) {
+                    HStack {
+                        Spacer()
+                        
+                        Button("Done") {
+                            focusedField = nil
+                        }
+                    }
+                }
+            }
         }
     }
 }
