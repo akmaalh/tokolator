@@ -34,7 +34,7 @@ struct TransactionView: View {
                 
                 ScrollView {
                     ForEach(dailySales, id: \.date) { sale in
-                        DailySalesRow(sale: sale)
+                        DailySalesRow(sale: sale, transactionType: selectedSegment)
                             .padding(.horizontal, 16.0)
                     }
                 }
@@ -110,6 +110,16 @@ struct DailySale: Identifiable {
 struct DailySalesRow: View {
     let sale: DailySale
     @State private var showDetail = false
+    var transactionType: TransactionType
+
+    var foregroundColor: Color {
+        switch transactionType {
+        case .income:
+            return .green
+        case .expense:
+            return .red
+        }
+    }
     
     var body: some View {
         HStack(alignment: .center) {
@@ -117,7 +127,7 @@ struct DailySalesRow: View {
             Spacer()
             Text("Rp\(formatPrice(sale.totalSales))")
                 .fontWeight(.black)
-                .foregroundColor(.green)
+                .foregroundColor(foregroundColor)
         }
         .padding(.all, 24.0)
         .background(.ultraThinMaterial)
