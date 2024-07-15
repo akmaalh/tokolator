@@ -5,13 +5,12 @@ import Combine
 
 struct AddItemView: View {
     @Environment(\.presentationMode) private var presentationMode
-    @Environment(\.modelContext) private var modelContext
     
-    @State private var item = Item()
-    
+    @State var inventoryViewModel: InventoryViewModel = .init()
     @State private var name: String = ""
     @State private var price: String = ""
     @State private var selectedPhoto: PhotosPickerItem?
+    @State private var selectedPhotoData: Data?
     @State private var showAlert = false
     
     @FocusState private var focusedField: Field?
@@ -43,7 +42,7 @@ struct AddItemView: View {
                 }
                 
                 Section(header: Text("Item Image")) {
-                    if let imageData = item.image,
+                    if let imageData = selectedPhotoData,
                        let uiImage = UIImage(data: imageData) {
                         Image(uiImage: uiImage)
                             .resizable()
@@ -68,7 +67,12 @@ struct AddItemView: View {
                 
                 Section {
                     Button(action: {
-                        addItem()
+                        guard let priceValue = Int(price), let photoData = selectedPhotoData else {
+                            return
+                        }
+                        
+                        inventoryViewModel.addItem(name: name, price: priceValue, photo: photoData)
+                        showAlert = true
                     }) {
                         HStack {
                             Image(systemName: "plus")
@@ -94,7 +98,7 @@ struct AddItemView: View {
             })
             .task(id: selectedPhoto) {
                 if let data = try? await selectedPhoto?.loadTransferable(type: Data.self) {
-                    item.image = data
+                    selectedPhotoData = data
                 }
             }
             .toolbar {
@@ -109,19 +113,5 @@ struct AddItemView: View {
                 }
             }
         }
-    }
-    
-    private func addItem() {
-        item.name = name
-        
-        if let inputPrice = Int(price) {
-            item.price = inputPrice
-        } else {
-            item.price = 0
-        }
-        
-        modelContext.insert(item)
-        
-        showAlert = true
     }
 }

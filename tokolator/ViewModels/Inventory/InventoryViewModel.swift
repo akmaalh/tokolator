@@ -22,7 +22,7 @@ class InventoryViewModel {
     
     func fetchItems() {
         let fetchDescriptor = FetchDescriptor<Item>(
-            sortBy: [SortDescriptor(\.timestamp)]
+            sortBy: [SortDescriptor(\.timestamp, order: .reverse)]
         )
         
         do {
@@ -31,6 +31,16 @@ class InventoryViewModel {
             print("Failed to fetch items: \(error.localizedDescription)")
             items = []
         }
+    }
+    
+    func addItem(name: String, price: Int, photo: Data) {
+        guard let modelContext else { return }
+        
+        let item = Item(name: name, price: price)
+        item.image = photo
+        
+        modelContext.insert(item)
+        fetchItems()
     }
     
     func openRestockView() {
