@@ -1,86 +1,127 @@
 import SwiftUI
 import SwiftData
+import Combine
 
 struct ItemDetailView: View {
     @Environment(\.presentationMode) private var presentationMode
     @Environment(\.modelContext) private var modelContext
+    
     @Bindable var item: Item
     
     @FocusState private var focusedField: Field?
     
-    @State private var newPrice: Int = 0
+    @State private var newPrice: String = ""
     @State private var isPriceChanged: Bool = false
+    @State private var showSaveAlert = false
     
-    private enum Field {
-        case price
-    }
+    @State private var showDeleteConfirmationDialog = false
+    @State private var confirmedToDelete = false
     
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Item Image")) {
-                    if let imageData = item.image ,
-                       let uiImage = UIImage(data: imageData) {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: 300)
+                Section(header: Text("Item Details")) {
+                    HStack {
+                        Text("Price (Rp)")
+                            .frame(width: 80, alignment: .leading)
+                        TextField("Price", text: $newPrice)
+                            .focused($focusedField, equals: .price)
+                            .keyboardType(.numberPad)
+                            .onReceive(Just(newPrice)) { newValue in
+                                let filtered = newValue.filter { "0123456789".contains($0) }
+                                if filtered != newValue {
+                                    self.newPrice = filtered
+                                }
+                            }
                     }
                 }
                 
-                Section(header: Text("Item Details")) {
-                    Text(item.name)
-                    TextField("Price", value: $newPrice, format: .number)
-                        .keyboardType(.numberPad)
+                Section {
+                    Button(action: {
+                        saveItem()
+                    }, label: {
+                        HStack {
+                            Image(systemName: "checkmark.circle")
+                            Text("Save Item")
+                        }
+                    })
+                    .tint(Color.green)
+                    .disabled(!isPriceChanged)
+                    .alert(isPresented: $showSaveAlert) {
+                        Alert(
+                            title: Text("Price Saved"),
+                            message: Text("The price has been successfully updated."),
+                            dismissButton: .default(Text("OK")) {
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                        )
+                    }
+                    
+                    Button(action: {
+                        showDeleteConfirmationDialog = true
+                    }, label: {
+                        HStack {
+                            Image(systemName: "trash")
+                            Text("Delete Item")
+                        }
+                    })
+                    .tint(Color.red)
+                    .confirmationDialog("Delete Item", isPresented: $showDeleteConfirmationDialog, titleVisibility: .visible) {
+                        Button("Delete", role: .destructive) {
+                            confirmedToDelete = true
+                        }
+                        
+                        Button("Cancel", role: .cancel) {}
+                    } message: {
+                        Text("Are you sure you want to delete this item?")
+                    }
                 }
-                
-                
-                Button(action: {
-                    saveItem()
-                }, label: {
-                    Text("Save")
-                })
-                .tint(Color.green)
-                .disabled(!isPriceChanged)
-                
-                Button(action: {
-                    deleteItems(item: item)
-                }, label: {
-                    Text("Delete")
-                })
-                .tint(Color.red)
             }
-            .navigationTitle("Edit Item")
+            .navigationTitle("\(item.name)")
             .navigationBarItems(leading: Button("Cancel") {
                 presentationMode.wrappedValue.dismiss()
             })
-        }
-        .padding()
-        .toolbar {
-            ToolbarItem(placement: .keyboard) {
-                Button("Done") {
-                    focusedField = nil
+            .toolbar {
+                ToolbarItem(placement: .keyboard) {
+                    HStack {
+                        Spacer()
+                        
+                        Button("Done") {
+                            focusedField = nil
+                        }
+                    }
                 }
             }
         }
+        .padding()
         .onAppear {
-            newPrice = item.price
+            newPrice = String(item.price)
         }
         .onChange(of: newPrice) {
-            if newPrice != item.price {
+            if Int(newPrice) != item.price {
                 isPriceChanged = true
             } else {
                 isPriceChanged = false
             }
         }
+        .onChange(of: confirmedToDelete) {
+            if confirmedToDelete {
+                deleteItem()
+            }
+        }
     }
     
     private func saveItem() {
-        item.price = newPrice
-        presentationMode.wrappedValue.dismiss()
+        if let inputPrice = Int(newPrice) {
+            item.price = inputPrice
+        } else {
+            item.price = 0
+        }
+        
+        showSaveAlert = true
     }
     
-    private func deleteItems(item: Item) {
+    private func deleteItem() {
         modelContext.delete(item)
         presentationMode.wrappedValue.dismiss()
     }
