@@ -2,14 +2,11 @@ import SwiftUI
 import SwiftData
 
 struct InventoryView: View {
-    @Query(sort: \Item.timestamp, order: .reverse) private var items: [Item]
-    @State private var selectedItem: Item?
-    @State private var isRestockViewPresented: Bool = false
-    @State private var isAddItemViewPresented: Bool = false
+    @StateObject private var inventoryViewModel = InventoryViewModel()
     
     var body: some View {
         VStack {
-            if items.isEmpty {
+            if inventoryViewModel.items.isEmpty {
                 ContentUnavailableView(label: {
                     Label("Empty Inventory", systemImage: "shippingbox")
                 }, description: {
@@ -23,9 +20,9 @@ struct InventoryView: View {
                 
                 ScrollView {
                     LazyVGrid(columns: columns, spacing: 8) {
-                        ForEach(items) { item in
+                        ForEach(inventoryViewModel.items) { item in
                             Button(action: {
-                                selectedItem = item
+                                inventoryViewModel.selectedItem = item
                             }) {
                                 VStack(spacing: 0) {
                                     VStack(spacing: 0) {
@@ -78,17 +75,17 @@ struct InventoryView: View {
             
             HStack(spacing: 16) {
                 Button(action: {
-                    isRestockViewPresented = true
+                    inventoryViewModel.openRestockView()
                 }) {
                     Text("RESTOCK")
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
                 .controlSize(.large)
-                .disabled(items.isEmpty)
+                .disabled(inventoryViewModel.items.isEmpty)
                 
                 Button(action: {
-                    isAddItemViewPresented = true
+                    inventoryViewModel.openAddItemView()
                 }) {
                     Text("ADD ITEM")
                         .frame(maxWidth: .infinity)
@@ -102,18 +99,14 @@ struct InventoryView: View {
             .frame(maxWidth: .infinity)
         }
         .frame(maxWidth: .infinity)
-        .sheet(item: $selectedItem) { item in
+        .sheet(item: $inventoryViewModel.selectedItem) { item in
             ItemDetailView(item: item)
         }
-        .sheet(isPresented: $isRestockViewPresented) {
+        .sheet(isPresented: $inventoryViewModel.isRestockViewPresented) {
             RestockView()
         }
-        .sheet(isPresented: $isAddItemViewPresented) {
+        .sheet(isPresented: $inventoryViewModel.isAddItemViewPresented) {
             AddItemView()
         }
     }
-}
-
-#Preview {
-    InventoryView()
 }

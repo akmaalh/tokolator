@@ -26,6 +26,7 @@
 		53983E3E2C3FC4450028CCF6 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E3D2C3FC4450028CCF6 /* ItemDetailView.swift */; };
 		53983E402C3FC4F20028CCF6 /* RestockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E3F2C3FC4F20028CCF6 /* RestockView.swift */; };
 		53983E442C4373860028CCF6 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E432C4373860028CCF6 /* Enums.swift */; };
+		53983E492C45258C0028CCF6 /* InventoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E482C45258C0028CCF6 /* InventoryViewModel.swift */; };
 		8F288DA62C41FF8A005B20A5 /* ControlButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F288DA52C41FF85005B20A5 /* ControlButtons.swift */; };
 		8F288DA82C41FFB7005B20A5 /* ItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F288DA72C41FFAC005B20A5 /* ItemRow.swift */; };
 		8F288DAA2C42008F005B20A5 /* ItemCountAdjustSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F288DA92C420084005B20A5 /* ItemCountAdjustSheet.swift */; };
@@ -53,6 +54,7 @@
 		53983E3D2C3FC4450028CCF6 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
 		53983E3F2C3FC4F20028CCF6 /* RestockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestockView.swift; sourceTree = "<group>"; };
 		53983E432C4373860028CCF6 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		53983E482C45258C0028CCF6 /* InventoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViewModel.swift; sourceTree = "<group>"; };
 		8F288DA52C41FF85005B20A5 /* ControlButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButtons.swift; sourceTree = "<group>"; };
 		8F288DA72C41FFAC005B20A5 /* ItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRow.swift; sourceTree = "<group>"; };
 		8F288DA92C420084005B20A5 /* ItemCountAdjustSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCountAdjustSheet.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 		16836DB22C3EA65300C1024A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				53983E472C45253D0028CCF6 /* Inventory */,
 				16836DBB2C3EA79900C1024A /* CashierViewModel.swift */,
 				16836DCB2C4061EF00C1024A /* TransactionViewModel.swift */,
 			);
@@ -191,6 +194,14 @@
 			children = (
 			);
 			path = History;
+			sourceTree = "<group>";
+		};
+		53983E472C45253D0028CCF6 /* Inventory */ = {
+			isa = PBXGroup;
+			children = (
+				53983E482C45258C0028CCF6 /* InventoryViewModel.swift */,
+			);
+			path = Inventory;
 			sourceTree = "<group>";
 		};
 		8F288DA42C41FF7B005B20A5 /* Components */ = {
@@ -287,6 +298,7 @@
 				8F288DA82C41FFB7005B20A5 /* ItemRow.swift in Sources */,
 				16836DA52C3EA0F200C1024A /* ContentView.swift in Sources */,
 				53983E402C3FC4F20028CCF6 /* RestockView.swift in Sources */,
+				53983E492C45258C0028CCF6 /* InventoryViewModel.swift in Sources */,
 				8F288DAC2C4200B1005B20A5 /* SummarySheet.swift in Sources */,
 				16836DBE2C3EA7F800C1024A /* Util.swift in Sources */,
 				16836DA32C3EA0F200C1024A /* tokolatorApp.swift in Sources */,
