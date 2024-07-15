@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 
 struct InventoryView: View {
-    @StateObject private var inventoryViewModel = InventoryViewModel()
+    @State var inventoryViewModel: InventoryViewModel = .init()
     
     var body: some View {
         VStack {
@@ -13,13 +13,8 @@ struct InventoryView: View {
                     Text("You do not have any items in your inventory")
                 }, actions: {})
             } else {
-                let columns = [
-                    GridItem(.flexible()),
-                    GridItem(.flexible())
-                ]
-                
                 ScrollView {
-                    LazyVGrid(columns: columns, spacing: 8) {
+                    LazyVGrid(columns: inventoryViewModel.columns, spacing: 8) {
                         ForEach(inventoryViewModel.items) { item in
                             Button(action: {
                                 inventoryViewModel.selectedItem = item

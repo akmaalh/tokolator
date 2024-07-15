@@ -4,10 +4,10 @@ import SwiftData
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
 
-    
+
     var body: some View {
         TabView {
-            InventoryView()
+            InventoryView(inventoryViewModel: .init(modelContext: modelContext))
                 .tabItem {
                     Text("Inventory")
                     Image(systemName: "bag")
@@ -28,9 +28,4 @@ struct ContentView: View {
                 .toolbarBackground(.navbarBG, for: .tabBar)
         }
     }
-}
-
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
 }
