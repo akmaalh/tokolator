@@ -12,6 +12,7 @@ class InventoryViewModel {
     ]
     
     var selectedItem: Item?
+    var isItemDetailSheetPresented: Bool = false
     var isRestockViewPresented: Bool = false
     var isAddItemViewPresented: Bool = false
     
@@ -41,6 +42,24 @@ class InventoryViewModel {
         
         modelContext.insert(item)
         fetchItems()
+    }
+    
+    func updateItemPrice(newPrice: Int) {
+        guard let selectedItem else { return }
+        
+        selectedItem.price = newPrice
+        fetchItems()
+    }
+    
+    func deleteItem() {
+        guard let modelContext, let selectedItem else { return }
+        
+        modelContext.delete(selectedItem)
+        fetchItems()
+    }
+    
+    func openItemDetailView() {
+        isItemDetailSheetPresented = true
     }
     
     func openRestockView() {

@@ -18,6 +18,7 @@ struct InventoryView: View {
                         ForEach(inventoryViewModel.items) { item in
                             Button(action: {
                                 inventoryViewModel.selectedItem = item
+                                inventoryViewModel.openItemDetailView()
                             }) {
                                 VStack(spacing: 0) {
                                     VStack(spacing: 0) {
@@ -94,8 +95,8 @@ struct InventoryView: View {
             .frame(maxWidth: .infinity)
         }
         .frame(maxWidth: .infinity)
-        .sheet(item: $inventoryViewModel.selectedItem) { item in
-            ItemDetailView(item: item)
+        .sheet(isPresented: $inventoryViewModel.isItemDetailSheetPresented) {
+            ItemDetailView(inventoryViewModel: inventoryViewModel)
         }
         .sheet(isPresented: $inventoryViewModel.isRestockViewPresented) {
             RestockView()
