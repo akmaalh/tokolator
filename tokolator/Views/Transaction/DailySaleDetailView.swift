@@ -35,7 +35,7 @@ struct DailySaleDetailView: View {
                     .foregroundColor(color)
             }
             .padding()
-            .background(.yellow)
+            .background(.ultraThinMaterial)
         }
     }
     
