@@ -36,7 +36,10 @@ struct CashierView: View {
                         ScrollView {
                             LazyVGrid(columns: columns, spacing: 8) {
                                 ForEach(items) { item in
-                                    Button(action: { viewModel.addItem(item) }) {
+                                    Button(action: {
+                                        viewModel.addItem(item)
+                                        viewModel.generateHapticFeedback()
+                                    }) {
                                         ItemRow(item: item, selectedCount: viewModel.selectedItemCount[item.id] ?? 0)
                                     }
                                     .contextMenu {
@@ -58,7 +61,8 @@ struct CashierView: View {
                         ControlButtons(
                             onClear: viewModel.clearSelection,
                             onDecrement: viewModel.decrementSelection,
-                            onCalculate: viewModel.calculateTotalPrice
+                            onCalculate: viewModel.calculateTotalPrice,
+                            onHapticFeedback: viewModel.generateHapticFeedback
                         )
                         .padding()
                         .fontWeight(.heavy)
