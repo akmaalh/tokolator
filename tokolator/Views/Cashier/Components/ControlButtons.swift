@@ -20,7 +20,7 @@ struct ControlButtons: View {
                 onHapticFeedback()
             }) {
                 Text("CLEAR")
-                    .frame(maxWidth: .infinity)
+                    .frame(maxWidth: .infinity, minHeight: 24, maxHeight: 24)
             }
             .buttonStyle(.borderedProminent)
             .controlSize(.large)
@@ -30,8 +30,8 @@ struct ControlButtons: View {
                 onDecrement()
                 onHapticFeedback()
             }) {
-                Text("-")
-                    .frame(maxWidth: .infinity)
+                Image(systemName: "minus")
+                    .frame(maxWidth: .infinity, minHeight: 24, maxHeight: 24)
             }
             .buttonStyle(.borderedProminent)
             .controlSize(.large)
@@ -41,8 +41,8 @@ struct ControlButtons: View {
                 onCalculate()
                 onHapticFeedback()
             }) {
-                Text("=")
-                    .frame(maxWidth: .infinity)
+                Image(systemName: "equal")
+                    .frame(maxWidth: .infinity, minHeight: 24, maxHeight: 24)
             }
             .buttonStyle(.borderedProminent)
             .controlSize(.large)
