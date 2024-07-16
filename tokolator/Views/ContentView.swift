@@ -19,7 +19,7 @@ struct ContentView: View {
                     Image(systemName: "plus.forwardslash.minus")
                 }
             
-            TransactionView()
+            TransactionView(modelContext: modelContext)
                 .tabItem {
                     Text("Transactions")
                     Image(systemName: "newspaper")
