@@ -5,14 +5,9 @@ import Combine
 
 struct AddItemView: View {
     @Environment(\.presentationMode) private var presentationMode
-    @Environment(\.modelContext) private var modelContext
     
-    @State private var item = Item()
-    
-    @State private var name: String = ""
-    @State private var price: String = ""
-    @State private var selectedPhoto: PhotosPickerItem?
-    @State private var showAlert = false
+    @State var inventoryViewModel: InventoryViewModel = .init()
+    @State var addItemViewModel: AddItemViewModel = .init()
     
     @FocusState private var focusedField: Field?
     
@@ -23,27 +18,27 @@ struct AddItemView: View {
                     HStack {
                         Text("Name")
                             .frame(width: 80, alignment: .leading)
-                        TextField("Name", text: $name)
+                        TextField("Name", text: $addItemViewModel.name)
                             .focused($focusedField, equals: .name)
                     }
                     
                     HStack {
                         Text("Price (Rp)")
                             .frame(width: 80, alignment: .leading)
-                        TextField("Price", text: $price)
+                        TextField("Price", text: $addItemViewModel.price)
                             .focused($focusedField, equals: .price)
                             .keyboardType(.numberPad)
-                            .onReceive(Just(price)) { newValue in
+                            .onReceive(Just(addItemViewModel.price)) { newValue in
                                 let filtered = newValue.filter { "0123456789".contains($0) }
                                 if filtered != newValue {
-                                    self.price = filtered
+                                    self.addItemViewModel.price = filtered
                                 }
                             }
                     }
                 }
                 
                 Section(header: Text("Item Image")) {
-                    if let imageData = item.image,
+                    if let imageData = addItemViewModel.selectedPhotoData,
                        let uiImage = UIImage(data: imageData) {
                         Image(uiImage: uiImage)
                             .resizable()
@@ -51,8 +46,8 @@ struct AddItemView: View {
                             .frame(maxWidth: .infinity, maxHeight: 300)
                     }
                     
-                    PhotosPicker(selection: $selectedPhoto, matching: .images, photoLibrary: .shared()) {
-                        if selectedPhoto == nil {
+                    PhotosPicker(selection: $addItemViewModel.selectedPhoto, matching: .images, photoLibrary: .shared()) {
+                        if addItemViewModel.selectedPhoto == nil {
                             HStack {
                                 Image(systemName: "photo")
                                 Text("Add Image")
@@ -68,7 +63,12 @@ struct AddItemView: View {
                 
                 Section {
                     Button(action: {
-                        addItem()
+                        guard let priceValue = Int(addItemViewModel.price), let photoData = addItemViewModel.selectedPhotoData else {
+                            return
+                        }
+                        
+                        inventoryViewModel.addItem(name: addItemViewModel.name, price: priceValue, photo: photoData)
+                        addItemViewModel.showAlert = true
                     }) {
                         HStack {
                             Image(systemName: "plus")
@@ -76,8 +76,8 @@ struct AddItemView: View {
                         }
                     }
                     .tint(Color.green)
-                    .disabled(name.isEmpty || price.isEmpty || selectedPhoto == nil)
-                    .alert(isPresented: $showAlert) {
+                    .disabled(!addItemViewModel.checkForm())
+                    .alert(isPresented: $addItemViewModel.showAlert) {
                         Alert(
                             title: Text("Item Added"),
                             message: Text("The item has been successfully added to your inventory."),
@@ -92,9 +92,9 @@ struct AddItemView: View {
             .navigationBarItems(leading: Button("Cancel") {
                 presentationMode.wrappedValue.dismiss()
             })
-            .task(id: selectedPhoto) {
-                if let data = try? await selectedPhoto?.loadTransferable(type: Data.self) {
-                    item.image = data
+            .task(id: addItemViewModel.selectedPhoto) {
+                if let data = try? await addItemViewModel.selectedPhoto?.loadTransferable(type: Data.self) {
+                    addItemViewModel.selectedPhotoData = data
                 }
             }
             .toolbar {
@@ -109,19 +109,5 @@ struct AddItemView: View {
                 }
             }
         }
-    }
-    
-    private func addItem() {
-        item.name = name
-        
-        if let inputPrice = Int(price) {
-            item.price = inputPrice
-        } else {
-            item.price = 0
-        }
-        
-        modelContext.insert(item)
-        
-        showAlert = true
     }
 }

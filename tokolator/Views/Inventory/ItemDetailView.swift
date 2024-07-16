@@ -4,18 +4,11 @@ import Combine
 
 struct ItemDetailView: View {
     @Environment(\.presentationMode) private var presentationMode
-    @Environment(\.modelContext) private var modelContext
     
-    @Bindable var item: Item
+    @State var inventoryViewModel: InventoryViewModel
+    @State var itemDetailViewModel: ItemDetailViewModel = .init()
     
     @FocusState private var focusedField: Field?
-    
-    @State private var newPrice: String = ""
-    @State private var isPriceChanged: Bool = false
-    @State private var showSaveAlert = false
-    
-    @State private var showDeleteConfirmationDialog = false
-    @State private var confirmedToDelete = false
     
     var body: some View {
         NavigationView {
@@ -24,13 +17,13 @@ struct ItemDetailView: View {
                     HStack {
                         Text("Price (Rp)")
                             .frame(width: 80, alignment: .leading)
-                        TextField("Price", text: $newPrice)
+                        TextField("Price", text: $itemDetailViewModel.price)
                             .focused($focusedField, equals: .price)
                             .keyboardType(.numberPad)
-                            .onReceive(Just(newPrice)) { newValue in
+                            .onReceive(Just(itemDetailViewModel.price)) { newValue in
                                 let filtered = newValue.filter { "0123456789".contains($0) }
                                 if filtered != newValue {
-                                    self.newPrice = filtered
+                                    self.itemDetailViewModel.price = filtered
                                 }
                             }
                     }
@@ -38,16 +31,19 @@ struct ItemDetailView: View {
                 
                 Section {
                     Button(action: {
-                        saveItem()
+                        if let newPrice = Int(itemDetailViewModel.price) {
+                            inventoryViewModel.updateItemPrice(newPrice: newPrice)
+                            itemDetailViewModel.showSaveAlert = true
+                        }
                     }, label: {
                         HStack {
                             Image(systemName: "checkmark.circle")
                             Text("Save Item")
                         }
                     })
-                    .tint(Color.green)
-                    .disabled(!isPriceChanged)
-                    .alert(isPresented: $showSaveAlert) {
+                    .tint(.green)
+                    .disabled(!itemDetailViewModel.isPriceChanged)
+                    .alert(isPresented: $itemDetailViewModel.showSaveAlert) {
                         Alert(
                             title: Text("Price Saved"),
                             message: Text("The price has been successfully updated."),
@@ -58,26 +54,32 @@ struct ItemDetailView: View {
                     }
                     
                     Button(action: {
-                        showDeleteConfirmationDialog = true
+                        itemDetailViewModel.showDeleteConfirmationDialog = true
                     }, label: {
                         HStack {
                             Image(systemName: "trash")
                             Text("Delete Item")
                         }
                     })
-                    .tint(Color.red)
-                    .confirmationDialog("Delete Item", isPresented: $showDeleteConfirmationDialog, titleVisibility: .visible) {
+                    .tint(.red)
+                    .confirmationDialog(Text("Delete Item"), isPresented: $itemDetailViewModel.showDeleteConfirmationDialog, titleVisibility: .visible) {
                         Button("Delete", role: .destructive) {
-                            confirmedToDelete = true
+                            itemDetailViewModel.confirmedToDelete = true
                         }
                         
                         Button("Cancel", role: .cancel) {}
                     } message: {
-                        Text("Are you sure you want to delete this item?")
+                        Text("Are you sure you want to delete \(inventoryViewModel.selectedItem!.name)?")
+                    }
+                    .onChange(of: itemDetailViewModel.confirmedToDelete) {
+                        if itemDetailViewModel.confirmedToDelete {
+                            inventoryViewModel.deleteItem()
+                            presentationMode.wrappedValue.dismiss()
+                        }
                     }
                 }
             }
-            .navigationTitle("\(item.name)")
+            .navigationTitle("\(inventoryViewModel.selectedItem?.name ?? "")")
             .navigationBarItems(leading: Button("Cancel") {
                 presentationMode.wrappedValue.dismiss()
             })
@@ -85,7 +87,6 @@ struct ItemDetailView: View {
                 ToolbarItem(placement: .keyboard) {
                     HStack {
                         Spacer()
-                        
                         Button("Done") {
                             focusedField = nil
                         }
@@ -93,36 +94,18 @@ struct ItemDetailView: View {
                 }
             }
         }
-        .padding()
         .onAppear {
-            newPrice = String(item.price)
-        }
-        .onChange(of: newPrice) {
-            if Int(newPrice) != item.price {
-                isPriceChanged = true
-            } else {
-                isPriceChanged = false
+            if let selectedItem = inventoryViewModel.selectedItem {
+                itemDetailViewModel.price = String(selectedItem.price)
             }
         }
-        .onChange(of: confirmedToDelete) {
-            if confirmedToDelete {
-                deleteItem()
+        .onChange(of: itemDetailViewModel.price) {
+            if let selectedItem = inventoryViewModel.selectedItem {
+                let originalPrice = selectedItem.price
+                if let newPrice = Int(itemDetailViewModel.price) {
+                    itemDetailViewModel.isPriceChanged = originalPrice != newPrice
+                }
             }
         }
-    }
-    
-    private func saveItem() {
-        if let inputPrice = Int(newPrice) {
-            item.price = inputPrice
-        } else {
-            item.price = 0
-        }
-        
-        showSaveAlert = true
-    }
-    
-    private func deleteItem() {
-        modelContext.delete(item)
-        presentationMode.wrappedValue.dismiss()
     }
 }

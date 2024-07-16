@@ -67,6 +67,9 @@ struct TransactionView: View {
                 }
             }
             .navigationTitle("Transaction History")
+            .onAppear {
+                viewModel.refreshData()
+            }
         }
     }
     
