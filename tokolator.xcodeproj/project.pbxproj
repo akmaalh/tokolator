@@ -17,10 +17,12 @@
 		16836DBC2C3EA79900C1024A /* CashierViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DBB2C3EA79900C1024A /* CashierViewModel.swift */; };
 		16836DBE2C3EA7F800C1024A /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DBD2C3EA7F800C1024A /* Util.swift */; };
 		16836DC42C3FD02900C1024A /* TransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DC32C3FD02900C1024A /* TransactionView.swift */; };
-		16836DC62C3FD1C100C1024A /* DailyCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DC52C3FD1C100C1024A /* DailyCardView.swift */; };
-		16836DC82C3FDE6400C1024A /* DateMonthPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DC72C3FDE6400C1024A /* DateMonthPicker.swift */; };
+		16836DC62C3FD1C100C1024A /* DailySalesRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DC52C3FD1C100C1024A /* DailySalesRow.swift */; };
+		16836DC82C3FDE6400C1024A /* MonthYearPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DC72C3FDE6400C1024A /* MonthYearPickerView.swift */; };
 		16836DCA2C40619000C1024A /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DC92C40619000C1024A /* Transaction.swift */; };
 		16836DCC2C4061EF00C1024A /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DCB2C4061EF00C1024A /* TransactionViewModel.swift */; };
+		16836DD02C45286F00C1024A /* DailySaleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DCF2C45286F00C1024A /* DailySaleDetailView.swift */; };
+		16836DD22C45907400C1024A /* TransactionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DD12C45907400C1024A /* TransactionDataSource.swift */; };
 		53983E372C3FBE2C0028CCF6 /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E362C3FBE2C0028CCF6 /* InventoryView.swift */; };
 		53983E3C2C3FC3820028CCF6 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E3B2C3FC3820028CCF6 /* AddItemView.swift */; };
 		53983E3E2C3FC4450028CCF6 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E3D2C3FC4450028CCF6 /* ItemDetailView.swift */; };
@@ -44,10 +46,12 @@
 		16836DBB2C3EA79900C1024A /* CashierViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashierViewModel.swift; sourceTree = "<group>"; };
 		16836DBD2C3EA7F800C1024A /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		16836DC32C3FD02900C1024A /* TransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionView.swift; sourceTree = "<group>"; };
-		16836DC52C3FD1C100C1024A /* DailyCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCardView.swift; sourceTree = "<group>"; };
-		16836DC72C3FDE6400C1024A /* DateMonthPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthPicker.swift; sourceTree = "<group>"; };
+		16836DC52C3FD1C100C1024A /* DailySalesRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySalesRow.swift; sourceTree = "<group>"; };
+		16836DC72C3FDE6400C1024A /* MonthYearPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthYearPickerView.swift; sourceTree = "<group>"; };
 		16836DC92C40619000C1024A /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		16836DCB2C4061EF00C1024A /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
+		16836DCF2C45286F00C1024A /* DailySaleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySaleDetailView.swift; sourceTree = "<group>"; };
+		16836DD12C45907400C1024A /* TransactionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDataSource.swift; sourceTree = "<group>"; };
 		53983E362C3FBE2C0028CCF6 /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
 		53983E3B2C3FC3820028CCF6 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
 		53983E3D2C3FC4450028CCF6 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 			children = (
 				16836DBD2C3EA7F800C1024A /* Util.swift */,
 				53983E432C4373860028CCF6 /* Enums.swift */,
+				16836DD12C45907400C1024A /* TransactionDataSource.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -160,8 +165,9 @@
 			isa = PBXGroup;
 			children = (
 				16836DC32C3FD02900C1024A /* TransactionView.swift */,
-				16836DC72C3FDE6400C1024A /* DateMonthPicker.swift */,
-				16836DC52C3FD1C100C1024A /* DailyCardView.swift */,
+				16836DC72C3FDE6400C1024A /* MonthYearPickerView.swift */,
+				16836DC52C3FD1C100C1024A /* DailySalesRow.swift */,
+				16836DCF2C45286F00C1024A /* DailySaleDetailView.swift */,
 			);
 			path = Transaction;
 			sourceTree = "<group>";
@@ -276,8 +282,8 @@
 			files = (
 				53983E3E2C3FC4450028CCF6 /* ItemDetailView.swift in Sources */,
 				16836DBC2C3EA79900C1024A /* CashierViewModel.swift in Sources */,
+				16836DC62C3FD1C100C1024A /* DailySalesRow.swift in Sources */,
 				8F72428E2C46287D00AEE55B /* EditQuantitySheet.swift in Sources */,
-				16836DC62C3FD1C100C1024A /* DailyCardView.swift in Sources */,
 				53983E3C2C3FC3820028CCF6 /* AddItemView.swift in Sources */,
 				16836DBA2C3EA76B00C1024A /* CashierView.swift in Sources */,
 				53983E442C4373860028CCF6 /* Enums.swift in Sources */,
@@ -288,11 +294,14 @@
 				8F288DA82C41FFB7005B20A5 /* ItemRow.swift in Sources */,
 				16836DA52C3EA0F200C1024A /* ContentView.swift in Sources */,
 				53983E402C3FC4F20028CCF6 /* RestockView.swift in Sources */,
+				16836DD22C45907400C1024A /* TransactionDataSource.swift in Sources */,
 				8F288DAC2C4200B1005B20A5 /* SummarySheet.swift in Sources */,
 				16836DBE2C3EA7F800C1024A /* Util.swift in Sources */,
 				16836DA32C3EA0F200C1024A /* tokolatorApp.swift in Sources */,
 				16836DB62C3EA74100C1024A /* Service.swift in Sources */,
-				16836DC82C3FDE6400C1024A /* DateMonthPicker.swift in Sources */,
+				8F288DAA2C42008F005B20A5 /* ItemCountAdjustSheet.swift in Sources */,
+				16836DD02C45286F00C1024A /* DailySaleDetailView.swift in Sources */,
+				16836DC82C3FDE6400C1024A /* MonthYearPickerView.swift in Sources */,
 				53983E372C3FBE2C0028CCF6 /* InventoryView.swift in Sources */,
 				16836DCA2C40619000C1024A /* Transaction.swift in Sources */,
 			);

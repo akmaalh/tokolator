@@ -44,6 +44,16 @@ class Transaction {
         self.type = detail.type
         self.timestamp = Date()
     }
+    
+    init(detail: TransactionDetail, timestamp: Date) {
+        self.id = detail.id
+        self.itemId = detail.itemId
+        self.itemName = detail.itemName
+        self.quantity = detail.quantity
+        self.price = detail.price
+        self.type = detail.type
+        self.timestamp = timestamp
+    }
 }
 
 @Model
@@ -63,6 +73,22 @@ class TransactionDetail {
         self.price = price
         self.type = type
     }
+}
+
+struct DailySale: Identifiable {
+    let id = UUID()
+    let date: Date
+    let transactions: [Transaction]
+    
+    var totalSales: Int {
+        transactions.reduce(0) { $0 + ($1.quantity * $1.price) }
+    }
+}
+
+struct GroupedTransaction {
+    let itemName: String
+    let totalQuantity: Int
+    let totalPrice: Int
 }
 
 enum TransactionType: String, Codable {

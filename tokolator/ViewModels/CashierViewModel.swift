@@ -123,5 +123,10 @@ class CashierViewModel: ObservableObject {
             print("Error saving transaction: \(error)")
         }
     }
+
+    func generateDummyData() {
+            let generator = DummyDataGenerator(modelContext: modelContext)
+            generator.generateDummyTransactions()
+        }
 }
 

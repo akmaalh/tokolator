@@ -21,7 +21,7 @@ struct ContentView: View {
                 .toolbarBackground(.visible, for: .tabBar)
                 .toolbarBackground(.tabBarBG, for: .tabBar)
             
-            TransactionView()
+            TransactionView(modelContext: modelContext)
                 .tabItem {
                     Text("Transactions")
                     Image(systemName: "newspaper")
