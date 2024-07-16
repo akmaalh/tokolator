@@ -36,20 +36,20 @@ struct ItemRow: View {
                     }
                     .padding()
                     .frame(height: 160)
-                        Text("\(selectedCount)")
-                            .font(.system(size: 20, weight: .regular))
-                            .frame(width: 43, height: 43)
-                            .background(.cardHeaderBG)
-                            .clipShape(CustomRoundedCorner(radius: 8, corners: [.bottomRight]))
-                            .foregroundColor(Color.primary)
-                            .lineLimit(1)
+                    
+                    Text("\(selectedCount)")
+                        .font(.system(size: 20, weight: .regular))
+                        .padding(.horizontal, 4)
+                        .frame(minWidth: 43, minHeight: 43, maxHeight: 43,alignment: .center)
+                        .background(.cardHeaderBG)
+                        .clipShape(CustomRoundedCorner(radius: 8, corners: [.bottomRight]))
+                        .foregroundColor(Color.primary)
+                        .lineLimit(1)
                 }
-                
             }
             .font(.system(size: 20))
             .frame(maxWidth: .infinity)
             .background(.cardBG)
-            
         }
     }
 }
@@ -63,4 +63,3 @@ struct CustomRoundedCorner: Shape {
         return Path(path.cgPath)
     }
 }
-

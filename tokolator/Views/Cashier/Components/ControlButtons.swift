@@ -11,11 +11,14 @@ struct ControlButtons: View {
     let onClear: () -> Void
     let onDecrement: () -> Void
     let onCalculate: () -> Void
+    let onHapticFeedback: () -> Void
 
     var body: some View {
         HStack(spacing: 16) {
-            Button(action: onClear
-            ) {
+            Button(action: {
+                onClear()
+                onHapticFeedback()
+            }) {
                 Text("CLEAR")
                     .frame(maxWidth: .infinity)
             }
@@ -23,7 +26,10 @@ struct ControlButtons: View {
             .controlSize(.large)
             .tint(.clearBGControlButton)
             
-            Button(action: onDecrement) {
+            Button(action: {
+                onDecrement()
+                onHapticFeedback()
+            }) {
                 Text("-")
                     .frame(maxWidth: .infinity)
             }
@@ -31,8 +37,10 @@ struct ControlButtons: View {
             .controlSize(.large)
             .tint(.undoBGControlButton)
             
-            Button(action:
-                    onCalculate) {
+            Button(action: {
+                onCalculate()
+                onHapticFeedback()
+            }) {
                 Text("=")
                     .frame(maxWidth: .infinity)
             }
