@@ -87,17 +87,23 @@ struct MonthPickerView: View {
     
     var body: some View {
         HStack(alignment: .center) {
-            Text("Month: \(formattedMonth)")
-            Spacer()
+            HStack(spacing: 8) {
+                Text("Month: \(formattedMonth)")
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                Spacer()
+            }
+            .padding(.all)
+            .background(.ultraThinMaterial.opacity(0.7))
+            .cornerRadius(10)
             Button(action: {
                 showMonthPicker.toggle()
             }) {
                 Image(systemName: "calendar")
                     .padding()
-                    .background(Color.gray.opacity(0.1))
+                    .background(Color.blue.opacity(0.3))
                     .cornerRadius(10)
             }
-            .padding(.horizontal)
+            .padding(.trailing)
         }
         .sheet(isPresented: $showMonthPicker) {
             MonthYearPickerView(selectedDate: $selectedDate)
