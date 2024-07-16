@@ -128,5 +128,10 @@ class CashierViewModel: ObservableObject {
             let generator = DummyDataGenerator(modelContext: modelContext)
             generator.generateDummyTransactions()
         }
+    
+    func generateHapticFeedback() {
+        let impact = UIImpactFeedbackGenerator(style: .heavy)
+        impact.impactOccurred()
+    }
 }
 
