@@ -5,104 +5,68 @@ struct InventoryView: View {
     @State var inventoryViewModel: InventoryViewModel = .init()
     
     var body: some View {
-        VStack {
-            if inventoryViewModel.items.isEmpty {
-                ContentUnavailableView(label: {
-                    Label("Empty Inventory", systemImage: "shippingbox")
-                }, description: {
-                    Text("You do not have any items in your inventory")
-                }, actions: {})
-            } else {
-                ScrollView {
-                    LazyVGrid(columns: inventoryViewModel.columns, spacing: 8) {
-                        ForEach(inventoryViewModel.items) { item in
-                            Button(action: {
-                                inventoryViewModel.selectedItem = item
-                                inventoryViewModel.openItemDetailView()
-                            }) {
-                                VStack(spacing: 0) {
-                                    VStack(spacing: 0) {
-                                        HStack {
-                                            Text("\(item.name)")
-                                                .font(.system(size: 20))
-                                                .lineLimit(1)
-                                                .foregroundColor(Color.primary)
-                                        }
-                                        .padding(.vertical, 4)
-                                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                                        .background(Color(uiColor: .systemGray))
-                                        
-                                        HStack {
-                                            Text("\(item.stock)")
-                                                .lineLimit(1)
-                                                .foregroundColor(Color.primary)
-                                        }
-                                        .padding(.vertical, 4)
-                                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                                        .background(Color(uiColor: .systemGray2))
-                                    }
-                                    .font(.system(size: 20))
-                                    .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                                    
-                                    VStack {
-                                        if let imageData = item.image,
-                                           let uiImage = UIImage(data: imageData) {
-                                            Image(uiImage: uiImage)
-                                                .resizable()
-                                                .scaledToFit()
-                                                .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                                            
-                                        }
-                                    }
-                                    .padding()
-                                    .frame(height: 160)
+        NavigationView {
+            VStack(spacing: 0) {
+                if inventoryViewModel.items.isEmpty {
+                    ContentUnavailableView(label: {
+                        Label("Empty Inventory", systemImage: "shippingbox")
+                    }, description: {
+                        Text("You do not have any items in your inventory")
+                    }, actions: {})
+                } else {
+                    ScrollView {
+                        LazyVGrid(columns: inventoryViewModel.columns, spacing: 8) {
+                            ForEach(inventoryViewModel.items) { item in
+                                Button(action: {
+                                    inventoryViewModel.selectedItem = item
+                                    inventoryViewModel.openItemDetailView()
+                                }) {
+                                    ItemCard(item: item)
                                 }
-                                .background(Color(uiColor: .systemGray5))
-                                .cornerRadius(10)
                             }
                         }
+                        .padding(.horizontal)
+                        .padding(.top)
                     }
+                    .edgesIgnoringSafeArea(.bottom)
                 }
-                .padding(.horizontal)
-                .padding(.top)
-            }
-            
-            Spacer()
-            
-            HStack(spacing: 16) {
-                Button(action: {
-                    inventoryViewModel.openRestockView()
-                }) {
-                    Text("RESTOCK")
-                        .frame(maxWidth: .infinity)
-                }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
-                .disabled(inventoryViewModel.items.isEmpty)
                 
-                Button(action: {
-                    inventoryViewModel.openAddItemView()
-                }) {
-                    Text("ADD ITEM")
-                        .frame(maxWidth: .infinity)
+                HStack(spacing: 16) {
+                    Button(action: {
+                        inventoryViewModel.openRestockView()
+                    }) {
+                        Text("RESTOCK")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .disabled(inventoryViewModel.items.isEmpty)
+                    
+                    Button(action: {
+                        inventoryViewModel.openAddItemView()
+                    }) {
+                        Text("ADD ITEM")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
                 }
-                .buttonStyle(.borderedProminent)
-                .controlSize(.large)
+                .padding()
+                .fontWeight(.heavy)
+                .background(Color.tabBarBG)
+                .frame(maxWidth: .infinity)
             }
-            .padding()
-            .fontWeight(.heavy)
-            .background(.ultraThinMaterial)
+            .navigationTitle("Inventory")
             .frame(maxWidth: .infinity)
-        }
-        .frame(maxWidth: .infinity)
-        .sheet(isPresented: $inventoryViewModel.isItemDetailSheetPresented) {
-            ItemDetailView(inventoryViewModel: inventoryViewModel)
-        }
-        .sheet(isPresented: $inventoryViewModel.isRestockViewPresented) {
-            RestockView(inventoryViewModel: inventoryViewModel)
-        }
-        .sheet(isPresented: $inventoryViewModel.isAddItemViewPresented) {
-            AddItemView(inventoryViewModel: inventoryViewModel)
+            .sheet(isPresented: $inventoryViewModel.isItemDetailSheetPresented) {
+                ItemDetailView(inventoryViewModel: inventoryViewModel)
+            }
+            .sheet(isPresented: $inventoryViewModel.isRestockViewPresented) {
+                RestockView(inventoryViewModel: inventoryViewModel)
+            }
+            .sheet(isPresented: $inventoryViewModel.isAddItemViewPresented) {
+                AddItemView(inventoryViewModel: inventoryViewModel)
+            }
         }
     }
 }
