@@ -18,6 +18,8 @@ struct ContentView: View {
                     Text("Calculator")
                     Image(systemName: "plus.forwardslash.minus")
                 }
+                .toolbarBackground(.visible, for: .tabBar)
+                .toolbarBackground(.tabBarBG, for: .tabBar)
             
             TransactionView(modelContext: modelContext)
                 .tabItem {
@@ -25,7 +27,7 @@ struct ContentView: View {
                     Image(systemName: "newspaper")
                 }
                 .toolbarBackground(.visible, for: .tabBar)
-                .toolbarBackground(.navbarBG, for: .tabBar)
+                .toolbarBackground(.tabBarBG, for: .tabBar)
         }
     }
 }
