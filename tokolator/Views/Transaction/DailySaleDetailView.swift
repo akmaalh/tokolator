@@ -13,73 +13,96 @@ struct DailySaleDetailView: View {
     let color: Color
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("\(formattedDate)")
-                .font(.title)
-                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                .padding(.horizontal, 24)
-                .padding(.top, 16)
-                .padding(.bottom, 8)
-            
-            
-            if color == .green {
-                Text("Income History")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .padding(.leading, 24)
-            } else if color == .red {
-                Text("Expense History")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .padding(.leading, 24)
-            }
-            
-            List {
-                if color == .green { // Assuming color == .green indicates income, hence showing top items
-                    Section(header: Text("Top 3 bought items")) {
-                        ForEach(Array(groupedTransactions.sorted { $0.totalQuantity > $1.totalQuantity }.prefix(3).enumerated()), id: \.element.itemName) { index, group in
+            VStack(alignment: .leading) {
+                Text("\(formattedDate)")
+                    .font(.title)
+                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                    .padding(.horizontal, 24)
+                    .padding(.top, 16)
+                    .padding(.bottom, 8)
+                
+                
+                if color == .green {
+                    Text("Income History")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .padding(.leading, 24)
+                } else if color == .red {
+                    Text("Expense History")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .padding(.leading, 24)
+                }
+                
+                List {
+                    if color == .green { // Assuming color == .green indicates income, hence showing top items
+                        Section(header: Text("Top 3 bought items")) {
+                            ForEach(Array(groupedTransactions.sorted { $0.totalQuantity > $1.totalQuantity }.prefix(3).enumerated()), id: \.element.itemName) { index, group in
+                                HStack {
+                                    Text("\(group.itemName)")
+                                    Spacer()
+                                    Text("x\(group.totalQuantity)")
+                                    Text("\(formatPrice(group.totalPrice))")
+                                }
+                            }
+                        }
+                        
+                        Section(header: Text("Others")) {
+                            ForEach(Array(groupedTransactions.sorted { $0.totalQuantity > $1.totalQuantity }.dropFirst(3).enumerated()), id: \.element.itemName) { index, group in
+                                HStack {
+                                    Text("\(group.itemName)")
+                                    Spacer()
+                                    Text("x\(group.totalQuantity)")
+                                    Text("\(formatPrice(group.totalPrice))")
+                                }
+                            }
+                        }
+                    } else {
+                        // For transactions not marked as income (color != .green), list all items without highlighting
+                        ForEach(groupedTransactions.sorted { $0.totalQuantity > $1.totalQuantity }, id: \.itemName) { group in
                             HStack {
                                 Text("\(group.itemName)")
                                 Spacer()
                                 Text("x\(group.totalQuantity)")
                                 Text("\(formatPrice(group.totalPrice))")
                             }
-                        }
-                    }
-                    
-                    Section(header: Text("Others")) {
-                        ForEach(Array(groupedTransactions.sorted { $0.totalQuantity > $1.totalQuantity }.dropFirst(3).enumerated()), id: \.element.itemName) { index, group in
-                            HStack {
-                                Text("\(group.itemName)")
-                                Spacer()
-                                Text("x\(group.totalQuantity)")
-                                Text("\(formatPrice(group.totalPrice))")
-                            }
-                        }
-                    }
-                } else {
-                    // For transactions not marked as income (color != .green), list all items without highlighting
-                    ForEach(groupedTransactions.sorted { $0.totalQuantity > $1.totalQuantity }, id: \.itemName) { group in
-                        HStack {
-                            Text("\(group.itemName)")
-                            Spacer()
-                            Text("x\(group.totalQuantity)")
-                            Text("\(formatPrice(group.totalPrice))")
                         }
                     }
                 }
-            }
             
-            HStack {
-                Text("Subtotal")
-                Spacer()
-                Text("\(formatPrice(sale.totalSales))")
-                    .fontWeight(.bold)
-                    .foregroundColor(color)
+                
+                HStack(spacing: 23) {
+                    Button(action: {
+                    }) {
+                        Label("CANCEL", systemImage: "xmark.circle")
+                            .frame(maxWidth: .infinity)
+                            .font(.system(size: 20, weight: .regular))
+                    }
+                    .buttonStyle(CustomButtonStyle(color: .red))
+                    
+                    Button(action: {
+                    }) {
+                        Label("SAVE", systemImage: "checkmark.circle")
+                            .frame(maxWidth: .infinity)
+                            .font(.system(size: 20, weight: .regular))
+                    }
+                    .buttonStyle(CustomButtonStyle(color: .green))
+                }
+                .padding(.horizontal, 40)
+                .padding(.bottom, 64)
+                
+                
+                HStack {
+                    Text("Subtotal")
+                    Spacer()
+                    Text("\(formatPrice(sale.totalSales))")
+                        .fontWeight(.bold)
+                        .foregroundColor(color)
+                }
+                .padding()
+                .background(.ultraThinMaterial)
             }
-            .padding()
-            .background(.ultraThinMaterial)
-        }
+        
     }
     
     private var formattedDate: String {
