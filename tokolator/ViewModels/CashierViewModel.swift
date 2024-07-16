@@ -26,7 +26,7 @@ class CashierViewModel: ObservableObject {
     func addItem(_ item: Item) {
         let currentCount = selectedItemCount[item.id] ?? 0
         if currentCount + 1 > item.stock {
-            showAlert(message: "Jumlah melebihi stok yang tersedia. Stok \(item.name) tersedia: \(item.stock)")
+            showAlert(message: "Quantity exceeds available stock. Available stock: \(item.stock)")
         } else {
             updateItemCount(item, newCount: currentCount + 1)
         }
@@ -34,7 +34,7 @@ class CashierViewModel: ObservableObject {
     
     func updateItemCount(_ item: Item, newCount: Int) {
         if newCount > item.stock {
-            showAlert(message: "Jumlah melebihi stok yang tersedia. Stok \(item.name) tersedia: \(item.stock)")
+            showAlert(message: "Quantity exceeds available stock. Available stock: \(item.stock)")
         } else {
             let oldCount = selectedItemCount[item.id] ?? 0
             let change = newCount - oldCount
@@ -71,7 +71,7 @@ class CashierViewModel: ObservableObject {
     
     func decrementSelection() {
         guard let lastChange = history.last else {
-            showAlert(message: "Tidak ada item untuk di-undo.")
+            showAlert(message: "There are no items to undo.")
             return
         }
         
@@ -91,7 +91,7 @@ class CashierViewModel: ObservableObject {
     func calculateTotalPrice() {
         let totalSelectedCount = selectedItemCount.values.reduce(0, +)
         if totalSelectedCount == 0 {
-            showAlert(message: "Anda belum memilih item.")
+            showAlert(message: "You haven't selected an item")
         } else {
             showSummarySheet = true
         }
@@ -129,3 +129,4 @@ class CashierViewModel: ObservableObject {
             generator.generateDummyTransactions()
         }
 }
+
