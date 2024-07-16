@@ -15,15 +15,58 @@ struct DailySaleDetailView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text("\(formattedDate)")
-                .font(.headline)
-                .padding()
+                .font(.title)
+                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                .padding(.horizontal, 24)
+                .padding(.top, 16)
+                .padding(.bottom, 8)
             
-            List(groupedTransactions.sorted { $0.totalQuantity > $1.totalQuantity }, id: \.itemName) { group in
-                HStack {
-                    Text("\(group.itemName)")
-                    Spacer()
-                    Text("x\(group.totalQuantity)")
-                    Text("\(formatPrice(group.totalPrice))")
+            
+            if color == .green {
+                Text("Income History")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                    .padding(.leading, 24)
+            } else if color == .red {
+                Text("Expense History")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                    .padding(.leading, 24)
+            }
+            
+            List {
+                if color == .green { // Assuming color == .green indicates income, hence showing top items
+                    Section(header: Text("Top 3 bought items")) {
+                        ForEach(Array(groupedTransactions.sorted { $0.totalQuantity > $1.totalQuantity }.prefix(3).enumerated()), id: \.element.itemName) { index, group in
+                            HStack {
+                                Text("\(group.itemName)")
+                                Spacer()
+                                Text("x\(group.totalQuantity)")
+                                Text("\(formatPrice(group.totalPrice))")
+                            }
+                        }
+                    }
+                    
+                    Section(header: Text("Others")) {
+                        ForEach(Array(groupedTransactions.sorted { $0.totalQuantity > $1.totalQuantity }.dropFirst(3).enumerated()), id: \.element.itemName) { index, group in
+                            HStack {
+                                Text("\(group.itemName)")
+                                Spacer()
+                                Text("x\(group.totalQuantity)")
+                                Text("\(formatPrice(group.totalPrice))")
+                            }
+                        }
+                    }
+                } else {
+                    // For transactions not marked as income (color != .green), list all items without highlighting
+                    ForEach(groupedTransactions.sorted { $0.totalQuantity > $1.totalQuantity }, id: \.itemName) { group in
+                        HStack {
+                            Text("\(group.itemName)")
+                            Spacer()
+                            Text("x\(group.totalQuantity)")
+                            Text("\(formatPrice(group.totalPrice))")
+                        }
+                    }
                 }
             }
             
@@ -41,7 +84,7 @@ struct DailySaleDetailView: View {
     
     private var formattedDate: String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "d MMM yyyy"
+        formatter.dateFormat = "EEEE, d MMM yyyy"
         return formatter.string(from: sale.date)
     }
     

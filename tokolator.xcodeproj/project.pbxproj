@@ -22,7 +22,6 @@
 		16836DCA2C40619000C1024A /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DC92C40619000C1024A /* Transaction.swift */; };
 		16836DCC2C4061EF00C1024A /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DCB2C4061EF00C1024A /* TransactionViewModel.swift */; };
 		16836DD02C45286F00C1024A /* DailySaleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DCF2C45286F00C1024A /* DailySaleDetailView.swift */; };
-		16836DD22C45907400C1024A /* TransactionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DD12C45907400C1024A /* TransactionDataSource.swift */; };
 		5314706A2C463AFF00F6787C /* AddItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531470692C463AFF00F6787C /* AddItemViewModel.swift */; };
 		5314706C2C463DBF00F6787C /* ItemDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5314706B2C463DBF00F6787C /* ItemDetailViewModel.swift */; };
 		5314706E2C4640EF00F6787C /* RestockItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5314706D2C4640EF00F6787C /* RestockItem.swift */; };
@@ -56,7 +55,6 @@
 		16836DC92C40619000C1024A /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		16836DCB2C4061EF00C1024A /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
 		16836DCF2C45286F00C1024A /* DailySaleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySaleDetailView.swift; sourceTree = "<group>"; };
-		16836DD12C45907400C1024A /* TransactionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDataSource.swift; sourceTree = "<group>"; };
 		531470692C463AFF00F6787C /* AddItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewModel.swift; sourceTree = "<group>"; };
 		5314706B2C463DBF00F6787C /* ItemDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewModel.swift; sourceTree = "<group>"; };
 		5314706D2C4640EF00F6787C /* RestockItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestockItem.swift; sourceTree = "<group>"; };
@@ -168,7 +166,6 @@
 			children = (
 				16836DBD2C3EA7F800C1024A /* Util.swift */,
 				53983E432C4373860028CCF6 /* Enums.swift */,
-				16836DD12C45907400C1024A /* TransactionDataSource.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -318,14 +315,12 @@
 				8F288DA82C41FFB7005B20A5 /* ItemRow.swift in Sources */,
 				16836DA52C3EA0F200C1024A /* ContentView.swift in Sources */,
 				53983E402C3FC4F20028CCF6 /* RestockView.swift in Sources */,
-				16836DD22C45907400C1024A /* TransactionDataSource.swift in Sources */,
 				53983E492C45258C0028CCF6 /* InventoryViewModel.swift in Sources */,
 				8F288DAC2C4200B1005B20A5 /* SummarySheet.swift in Sources */,
 				16836DBE2C3EA7F800C1024A /* Util.swift in Sources */,
 				16836DA32C3EA0F200C1024A /* tokolatorApp.swift in Sources */,
 				531470702C46415500F6787C /* RestockViewModel.swift in Sources */,
 				16836DB62C3EA74100C1024A /* Service.swift in Sources */,
-				8F288DAA2C42008F005B20A5 /* ItemCountAdjustSheet.swift in Sources */,
 				16836DD02C45286F00C1024A /* DailySaleDetailView.swift in Sources */,
 				16836DC82C3FDE6400C1024A /* MonthYearPickerView.swift in Sources */,
 				53983E372C3FBE2C0028CCF6 /* InventoryView.swift in Sources */,
@@ -465,7 +460,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"tokolator/Preview Content\"";
-				DEVELOPMENT_TEAM = A23N5QDWR3;
+				DEVELOPMENT_TEAM = 69R63P7AM6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -494,7 +489,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"tokolator/Preview Content\"";
-				DEVELOPMENT_TEAM = A23N5QDWR3;
+				DEVELOPMENT_TEAM = 69R63P7AM6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
