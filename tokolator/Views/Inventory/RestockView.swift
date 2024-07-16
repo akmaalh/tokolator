@@ -1,71 +1,23 @@
 import SwiftUI
 import SwiftData
 
-class RestockItem: Identifiable {
-    var id: UUID
-    var itemId: UUID?
-    var quantity: Int?
-    var price: Int?
-    
-    init(itemId: UUID? = nil) {
-        self.id = UUID()
-        self.itemId = itemId
-        self.quantity = nil
-        self.price = nil
-    }
-}
-
 struct RestockView: View {
     @Environment(\.presentationMode) private var presentationMode
-    @Environment(\.modelContext) private var modelContext
-    @Query(sort: \Item.timestamp, order: .reverse) private var items: [Item]
     
-    @State private var restockItems: [RestockItem] = []
-    @State private var showAlert = false
+    @State var inventoryViewModel: InventoryViewModel = .init()
+    @State var restockViewModel: RestockViewModel = .init()
     
     @FocusState private var focusedField: Field?
-    
-    private var isFormValid: Bool {
-        for item in restockItems {
-            if item.itemId == nil || item.quantity == nil || item.price == nil {
-                return false
-            }
-        }
-        return true
-    }
-    
-    private func restock() {
-        for restockItem in restockItems {
-            if let itemId = restockItem.itemId,
-               let quantity = restockItem.quantity,
-               let price = restockItem.price,
-               let itemIndex = items.firstIndex(where: { $0.id == itemId }) {
-                let item = items[itemIndex]
-                
-                item.stock += quantity
-                
-                let transactionDetail = TransactionDetail(itemId: item.id, itemName: item.name, quantity: quantity, price: price, type: .expense)
-                
-                modelContext.insert(transactionDetail)
-                
-                let transaction = Transaction(detail: transactionDetail)
-                
-                modelContext.insert(transaction)
-            }
-        }
-        
-        showAlert = true
-    }
-    
+
     var body: some View {
         NavigationView {
             Form {
-                ForEach(restockItems.indices, id: \.self) { index in
-                    let restockItem = $restockItems[index]
+                ForEach(restockViewModel.restockItems.indices, id: \.self) { index in
+                    let restockItem = $restockViewModel.restockItems[index]
                     
                     Section(header: Text("Item \(index + 1)")) {
                         Picker("Select an item", selection: restockItem.itemId) {
-                            ForEach(items) { item in
+                            ForEach(inventoryViewModel.items) { item in
                                 Text(item.name)
                                     .tag(item.id as UUID?)
                             }
@@ -91,7 +43,7 @@ struct RestockView: View {
                         }
                         
                         Button(action: {
-                            restockItems.remove(at: index)
+                            restockViewModel.restockItems.remove(at: index)
                         }, label: {
                             Text("Remove Item")
                         })
@@ -101,8 +53,8 @@ struct RestockView: View {
                 
                 Section {
                     Button(action: {
-                        if let firstItemId = items.first?.id {
-                            restockItems.append(RestockItem(itemId: firstItemId))
+                        if let firstItemId = inventoryViewModel.items.first?.id {
+                            restockViewModel.restockItems.append(RestockItem(itemId: firstItemId))
                         }
                     }, label: {
                         Text("Add Item to Restock")
@@ -111,13 +63,13 @@ struct RestockView: View {
                 
                 Section {
                     Button(action: {
-                        restock()
+                        inventoryViewModel.restockItems(restockViewModel: restockViewModel)
                     }, label: {
                         Text("Restock Items")
                     })
                     .tint(Color.green)
-                    .disabled(!isFormValid || restockItems.isEmpty)
-                    .alert(isPresented: $showAlert) {
+                    .disabled(!restockViewModel.checkForm())
+                    .alert(isPresented: $restockViewModel.showAlert) {
                         Alert(
                             title: Text("Items Restocked"),
                             message: Text("The items have been successfully restocked."),
@@ -135,8 +87,8 @@ struct RestockView: View {
                 presentationMode.wrappedValue.dismiss()
             })
             .onAppear {
-                if restockItems.isEmpty, let firstItemId = items.first?.id {
-                    restockItems = [RestockItem(itemId: firstItemId)]
+                if restockViewModel.restockItems.isEmpty, let firstItemId = inventoryViewModel.items.first?.id {
+                    restockViewModel.restockItems = [RestockItem(itemId: firstItemId)]
                 }
             }
             .toolbar {
