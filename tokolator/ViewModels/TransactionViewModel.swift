@@ -68,4 +68,10 @@ class TransactionViewModel: ObservableObject {
         let dailySales = getDailySales(for: date, type: type)
         return dailySales.reduce(0) { $0 + $1.totalSales }
     }
+    
+    func refreshData() {
+            // Implement the logic to fetch fresh data
+            // This might involve re-querying the database or updating the transactions
+            objectWillChange.send()
+        }
 }
