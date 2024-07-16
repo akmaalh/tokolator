@@ -21,6 +21,7 @@
 		16836DC82C3FDE6400C1024A /* DateMonthPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DC72C3FDE6400C1024A /* DateMonthPicker.swift */; };
 		16836DCA2C40619000C1024A /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DC92C40619000C1024A /* Transaction.swift */; };
 		16836DCC2C4061EF00C1024A /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16836DCB2C4061EF00C1024A /* TransactionViewModel.swift */; };
+		5314706A2C463AFF00F6787C /* AddItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531470692C463AFF00F6787C /* AddItemViewModel.swift */; };
 		53983E372C3FBE2C0028CCF6 /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E362C3FBE2C0028CCF6 /* InventoryView.swift */; };
 		53983E3C2C3FC3820028CCF6 /* AddItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E3B2C3FC3820028CCF6 /* AddItemView.swift */; };
 		53983E3E2C3FC4450028CCF6 /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53983E3D2C3FC4450028CCF6 /* ItemDetailView.swift */; };
@@ -49,6 +50,7 @@
 		16836DC72C3FDE6400C1024A /* DateMonthPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateMonthPicker.swift; sourceTree = "<group>"; };
 		16836DC92C40619000C1024A /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		16836DCB2C4061EF00C1024A /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
+		531470692C463AFF00F6787C /* AddItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewModel.swift; sourceTree = "<group>"; };
 		53983E362C3FBE2C0028CCF6 /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
 		53983E3B2C3FC3820028CCF6 /* AddItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemView.swift; sourceTree = "<group>"; };
 		53983E3D2C3FC4450028CCF6 /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				53983E482C45258C0028CCF6 /* InventoryViewModel.swift */,
+				531470692C463AFF00F6787C /* AddItemViewModel.swift */,
 			);
 			path = Inventory;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				16836DC82C3FDE6400C1024A /* DateMonthPicker.swift in Sources */,
 				53983E372C3FBE2C0028CCF6 /* InventoryView.swift in Sources */,
 				16836DCA2C40619000C1024A /* Transaction.swift in Sources */,
+				5314706A2C463AFF00F6787C /* AddItemViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
