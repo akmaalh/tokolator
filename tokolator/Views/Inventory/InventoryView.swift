@@ -99,7 +99,7 @@ struct InventoryView: View {
             ItemDetailView(inventoryViewModel: inventoryViewModel)
         }
         .sheet(isPresented: $inventoryViewModel.isRestockViewPresented) {
-            RestockView()
+            RestockView(inventoryViewModel: inventoryViewModel)
         }
         .sheet(isPresented: $inventoryViewModel.isAddItemViewPresented) {
             AddItemView(inventoryViewModel: inventoryViewModel)
