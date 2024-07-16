@@ -23,6 +23,8 @@ struct DailySalesRow: View {
     
     var body: some View {
         HStack(alignment: .center) {
+            Text(formattedDay)
+            Spacer()
             Text(formattedDate)
             Spacer()
             Text("\(formatPrice(sale.totalSales))")
@@ -40,9 +42,17 @@ struct DailySalesRow: View {
         }
     }
     
+    private var formattedDay: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.autoupdatingCurrent // Automatically updates with the system language
+        formatter.dateFormat = "EEEE"
+        return formatter.string(from: sale.date)
+    }
+    
     private var formattedDate: String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE, d MMMM"
+        formatter.locale = Locale.autoupdatingCurrent // Automatically updates with the system language
+        formatter.dateFormat = "d MMM"
         return formatter.string(from: sale.date)
     }
     
