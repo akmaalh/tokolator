@@ -37,7 +37,7 @@ struct RestockView: View {
                             Text("Price (Rp)")
                                 .frame(width: 80, alignment: .leading)
                             
-                            TextField("Price", value: restockItem.price, format: .number)
+                            TextField("Price Buy Per Item", value: restockItem.price, format: .number)
                                 .keyboardType(.numberPad)
                                 .focused($focusedField, equals: .price)
                         }
