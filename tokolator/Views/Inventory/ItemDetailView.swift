@@ -13,7 +13,7 @@ struct ItemDetailView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Item Details")) {
+                Section(header: Text("Price Sell per Item")) {
                     HStack {
                         Text("Price (Rp)")
                             .frame(width: 80, alignment: .leading)

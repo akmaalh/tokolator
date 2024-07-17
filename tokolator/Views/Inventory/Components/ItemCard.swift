@@ -10,6 +10,7 @@ struct ItemCard: View {
                 Text("\(item.name)")
                     .frame(maxWidth: .infinity)
                     .lineLimit(1)
+                    .padding(6)
             }
             .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
             .padding(.vertical, 4)
@@ -21,7 +22,7 @@ struct ItemCard: View {
                     Image(uiImage: uiImage)
                         .resizable()
                         .scaledToFit()
-                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
+                        .frame(maxWidth: .infinity)
                     
                 }
             }
@@ -34,7 +35,7 @@ struct ItemCard: View {
                     .lineLimit(1)
             }
             .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-            .padding(.vertical, 4)
+            .padding(6)
             .background(Color.cardHeaderBG)
         }
         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)

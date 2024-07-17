@@ -25,7 +25,7 @@ struct AddItemView: View {
                     HStack {
                         Text("Price (Rp)")
                             .frame(width: 80, alignment: .leading)
-                        TextField("Price", text: $addItemViewModel.price)
+                        TextField("Price Sell Per Item", text: $addItemViewModel.price)
                             .focused($focusedField, equals: .price)
                             .keyboardType(.numberPad)
                             .onReceive(Just(addItemViewModel.price)) { newValue in

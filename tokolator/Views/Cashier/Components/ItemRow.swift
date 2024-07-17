@@ -19,12 +19,13 @@ struct ItemRow: View {
                         .font(.system(size: 20))
                         .lineLimit(1)
                         .foregroundColor(Color.primary)
+                        .padding(6)
                 }
                 .padding(.vertical, 4)
                 .frame(maxWidth: .infinity)
                 .background(.cardHeaderBG)
                 
-                ZStack(alignment: .topLeading) {
+                ZStack(alignment: .topTrailing) {
                     VStack {
                         if let imageData = item.image,
                            let uiImage = UIImage(data: imageData) {
@@ -39,10 +40,10 @@ struct ItemRow: View {
                     
                     Text("\(selectedCount)")
                         .font(.system(size: 20, weight: .regular))
-                        .padding(.horizontal, 4)
-                        .frame(minWidth: 43, minHeight: 43, maxHeight: 43,alignment: .center)
-                        .background(.cardHeaderBG)
-                        .clipShape(CustomRoundedCorner(radius: 8, corners: [.bottomRight]))
+                        .frame(minWidth: 43, minHeight: 43, alignment: .center)
+                        .background(.circleBG)
+                        .clipShape(CustomRoundedCorner(radius: 43, corners: [.allCorners]))
+                        .padding(7)
                         .foregroundColor(Color.primary)
                         .lineLimit(1)
                 }
