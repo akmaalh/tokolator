@@ -43,6 +43,7 @@ struct MonthYearPickerView: View {
             }
             .padding()
         }
+        .presentationDetents([.fraction(0.4)])
         .onAppear {
             initializeSelection()
         }

@@ -41,7 +41,7 @@ struct TransactionView: View {
                 .padding(.horizontal, 16)
                 
                 MonthPickerView(selectedDate: $selectedDate, showMonthPicker: $showMonthPicker)
-                    .padding(.leading, 16.0)
+                    .padding(.horizontal, 16.0)
                 
                 ScrollView {
                     ForEach(dailySales, id: \.date) { sale in
@@ -86,25 +86,20 @@ struct MonthPickerView: View {
     @Binding var showMonthPicker: Bool
     
     var body: some View {
-        HStack(alignment: .center) {
-            HStack(spacing: 8) {
-                Text("Month: \(formattedMonth)")
-                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                Spacer()
-            }
-            .padding(.all)
-            .background(.ultraThinMaterial.opacity(0.7))
-            .cornerRadius(10)
             Button(action: {
                 showMonthPicker.toggle()
             }) {
-                Image(systemName: "calendar")
-                    .padding()
-                    .background(Color.blue.opacity(0.3))
-                    .cornerRadius(10)
+                HStack(spacing: 8) {
+                    Spacer()
+                    Text("\(formattedMonth)")
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                    Spacer()
+                }
+                .padding(.all)
+                .background(.ultraThickMaterial)
+                .cornerRadius(10)
             }
-            .padding(.trailing)
-        }
         .sheet(isPresented: $showMonthPicker) {
             MonthYearPickerView(selectedDate: $selectedDate)
         }
