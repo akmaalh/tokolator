@@ -1,7 +1,387 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    "#%lld Transaction" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "#%11d Transaksi"
+          }
+        }
+      }
+    },
+    "%@" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
+    "%lld" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        }
+      }
+    },
+    "%lldx" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lldx"
+          }
+        }
+      }
+    },
+    "Add Image" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah Gambar"
+          }
+        }
+      }
+    },
+    "Add Item" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah Barang"
+          }
+        }
+      }
+    },
+    "ADD ITEM" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ADD ITEM"
+          }
+        }
+      }
+    },
+    "Add Item to Inventory" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambahkan Barang ke dalam Inventori"
+          }
+        }
+      }
+    },
+    "Add Item to Restock" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambahkan Item ke dalam Restock"
+          }
+        }
+      }
+    },
+    "Add New Item" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambahkan Barang Baru"
+          }
+        }
+      }
+    },
+    "Are you sure you want to delete %@?" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apakah anda yakin ingin menghapus barang ini?"
+          }
+        }
+      }
+    },
+    "Calculator" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kalkulator"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "CANCEL" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CANCEL"
+          }
+        }
+      }
+    },
+    "Change Image" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ubah Gambar"
+          }
+        }
+      }
+    },
+    "CLEAR" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HAPUS"
+          }
+        }
+      }
+    },
+    "Continue" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue"
+          }
+        }
+      }
+    },
+    "Delete" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        }
+      }
+    },
+    "Delete Item" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete Item"
+          }
+        }
+      }
+    },
+    "Done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Done"
+          }
+        }
+      }
+    },
+    "Edit Quantity" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Quantity"
+          }
+        }
+      }
+    },
+    "Empty Inventory" : {
 
+    },
+    "Expense History" : {
+
+    },
+    "Expenses" : {
+
+    },
+    "Income" : {
+
+    },
+    "Income History" : {
+
+    },
+    "Inventory" : {
+
+    },
+    "Item %lld" : {
+      "localizations" : {
+        "id" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Item %lld"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Item Added" : {
+
+    },
+    "Item Details" : {
+
+    },
+    "Item Image" : {
+
+    },
+    "Items Restocked" : {
+
+    },
+    "Month" : {
+
+    },
+    "Month: %@" : {
+
+    },
+    "Name" : {
+
+    },
+    "OK" : {
+
+    },
+    "Others" : {
+
+    },
+    "Picker" : {
+
+    },
+    "Price" : {
+
+    },
+    "Price (Rp)" : {
+
+    },
+    "Price Saved" : {
+
+    },
+    "Quantity" : {
+
+    },
+    "Quantity of items successfully updated." : {
+
+    },
+    "Quantity:" : {
+
+    },
+    "Remove Item" : {
+
+    },
+    "RESTOCK" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
+        }
+      }
+    },
+    "Restock Items" : {
+
+    },
+    "Rp %lld" : {
+
+    },
+    "SAVE" : {
+
+    },
+    "Save Item" : {
+
+    },
+    "Select an item" : {
+
+    },
+    "Stock: %lld" : {
+
+    },
+    "Subtotal" : {
+
+    },
+    "Success" : {
+
+    },
+    "The item has been successfully added to your inventory." : {
+
+    },
+    "The items have been successfully restocked." : {
+
+    },
+    "The price has been successfully updated." : {
+
+    },
+    "Top 3 bought items" : {
+
+    },
+    "Total" : {
+
+    },
+    "Total Rp %lld" : {
+
+    },
+    "Transaction History" : {
+
+    },
+    "Transactions" : {
+
+    },
+    "Warning" : {
+
+    },
+    "x%lld" : {
+
+    },
+    "Year" : {
+
+    },
+    "You do not have any items in your inventory" : {
+
+    },
+    "You do not have any items to calculate" : {
+
+    },
+    "Your input have been saved!" : {
+
+    }
   },
   "version" : "1.0"
 }
