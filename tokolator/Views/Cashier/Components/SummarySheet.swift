@@ -35,29 +35,31 @@ struct SummarySheet: View {
                         .font(.system(size: 20, weight: .medium))
                         .padding(.bottom, 37)
                     
-                    ScrollView {
+                    List {
                         ForEach(selectedItems) { item in
                             if let count = selectedItemCount[item.id], count > 0 {
                                 HStack {
                                     Text("\(count)x")
-                                        .frame(width: 50, alignment: .leading)
-                                    Text(item.name)
-                                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                                    Text("Rp \(count * item.price)")
-                                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                                        .fontWeight(.bold)
+                                    Text("\(item.name)")
+                                    Spacer()
+                                    Text("Rp\(count * item.price)")
                                 }
                                 .font(.system(size: 20, weight: .regular))
                             }
                         }
-                        
-                        HStack {
-                            Text("Total Rp \(totalHarga)")
-                                .font(.system(size: 20, weight: .medium))
-                            Spacer()
-                        }
-                        .padding(.top, 37)
-                        Spacer()
                     }
+                    .listStyle(.inset)
+                    
+                    HStack {
+                        Spacer()
+                        Text("Total")
+                        Text("Rp \(totalHarga)")
+                            .fontWeight(.bold)
+                            .foregroundColor(.green)
+                    }
+                    .padding()
+                    .background(.ultraThinMaterial)
                 }
                 .padding(.horizontal, 22    )
                 Spacer()

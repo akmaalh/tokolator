@@ -39,9 +39,10 @@ struct DailySaleDetailView: View {
                         Section(header: Text("Top 3 bought items")) {
                             ForEach(Array(groupedTransactions.sorted { $0.totalQuantity > $1.totalQuantity }.prefix(3).enumerated()), id: \.element.itemName) { index, group in
                                 HStack {
+                                    Text("x\(group.totalQuantity)")
+                                        .fontWeight(.bold)
                                     Text("\(group.itemName)")
                                     Spacer()
-                                    Text("x\(group.totalQuantity)")
                                     Text("\(formatPrice(group.totalPrice))")
                                 }
                             }
@@ -50,9 +51,10 @@ struct DailySaleDetailView: View {
                         Section(header: Text("Others")) {
                             ForEach(Array(groupedTransactions.sorted { $0.totalQuantity > $1.totalQuantity }.dropFirst(3).enumerated()), id: \.element.itemName) { index, group in
                                 HStack {
+                                    Text("x\(group.totalQuantity)")
+                                        .fontWeight(.bold)
                                     Text("\(group.itemName)")
                                     Spacer()
-                                    Text("x\(group.totalQuantity)")
                                     Text("\(formatPrice(group.totalPrice))")
                                 }
                             }
@@ -61,40 +63,21 @@ struct DailySaleDetailView: View {
                         // For transactions not marked as income (color != .green), list all items without highlighting
                         ForEach(groupedTransactions.sorted { $0.totalQuantity > $1.totalQuantity }, id: \.itemName) { group in
                             HStack {
+                                Text("x\(group.totalQuantity)")
+                                    .fontWeight(.bold)
                                 Text("\(group.itemName)")
                                 Spacer()
-                                Text("x\(group.totalQuantity)")
                                 Text("\(formatPrice(group.totalPrice))")
                             }
                         }
                     }
                 }
-            
-                
-                HStack(spacing: 23) {
-                    Button(action: {
-                    }) {
-                        Label("CANCEL", systemImage: "xmark.circle")
-                            .frame(maxWidth: .infinity)
-                            .font(.system(size: 20, weight: .regular))
-                    }
-                    .buttonStyle(CustomButtonStyle(color: .red))
-                    
-                    Button(action: {
-                    }) {
-                        Label("SAVE", systemImage: "checkmark.circle")
-                            .frame(maxWidth: .infinity)
-                            .font(.system(size: 20, weight: .regular))
-                    }
-                    .buttonStyle(CustomButtonStyle(color: .green))
-                }
-                .padding(.horizontal, 40)
-                .padding(.bottom, 64)
+                .listStyle(.inset)
                 
                 
                 HStack {
-                    Text("Subtotal")
                     Spacer()
+                    Text("Subtotal")
                     Text("\(formatPrice(sale.totalSales))")
                         .fontWeight(.bold)
                         .foregroundColor(color)
@@ -102,7 +85,7 @@ struct DailySaleDetailView: View {
                 .padding()
                 .background(.ultraThinMaterial)
             }
-        
+            .presentationDetents([.fraction(0.7)])
     }
     
     private var formattedDate: String {
