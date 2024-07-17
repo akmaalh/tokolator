@@ -216,28 +216,70 @@
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Edit Quantity"
+            "value" : "Edit Kuantitas"
           }
         }
       }
     },
     "Empty Inventory" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inventori Kosong"
+          }
+        }
+      }
     },
     "Expense History" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat Pengeluaran"
+          }
+        }
+      }
     },
     "Expenses" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengeluaran"
+          }
+        }
+      }
     },
     "Income" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pendapatan"
+          }
+        }
+      }
     },
     "Income History" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat Pemasukan"
+          }
+        }
+      }
     },
     "Inventory" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inventori"
+          }
+        }
+      }
     },
     "Item %lld" : {
       "localizations" : {
@@ -247,7 +289,7 @@
               "other" : {
                 "stringUnit" : {
                   "state" : "translated",
-                  "value" : "Item %lld"
+                  "value" : "Barang %lld"
                 }
               }
             }
@@ -256,131 +298,404 @@
       }
     },
     "Item Added" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Barang Ditambahkan"
+          }
+        }
+      }
     },
     "Item Details" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Detail Barang"
+          }
+        }
+      }
     },
     "Item Image" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gambar Barang"
+          }
+        }
+      }
     },
     "Items Restocked" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stok Barang Diperbarui"
+          }
+        }
+      }
     },
     "Month" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bulan"
+          }
+        }
+      }
     },
     "Month: %@" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bulan: %@"
+          }
+        }
+      }
     },
     "Name" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama"
+          }
+        }
+      }
     },
     "OK" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
     },
     "Others" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lainnya"
+          }
+        }
+      }
     },
     "Picker" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Picker"
+          }
+        }
+      }
     },
     "Price" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Harga"
+          }
+        }
+      }
     },
     "Price (Rp)" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Harga (Rp)"
+          }
+        }
+      }
     },
     "Price Saved" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Harga Tersimpan"
+          }
+        }
+      }
     },
     "Quantity" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuantitas"
+          }
+        }
+      }
     },
     "Quantity of items successfully updated." : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuantitas barang telah berhasil diperbarui."
+          }
+        }
+      }
     },
     "Quantity:" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuantitas:"
+          }
+        }
+      }
     },
     "Remove Item" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus Barang"
+          }
+        }
+      }
     },
     "RESTOCK" : {
       "localizations" : {
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : ""
+            "value" : "RESTOCK"
           }
         }
       }
     },
     "Restock Items" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Isi Stok Barang"
+          }
+        }
+      }
     },
     "Rp %lld" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rp %11d"
+          }
+        }
+      }
     },
     "SAVE" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SAVE"
+          }
+        }
+      }
     },
     "Save Item" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan Barang"
+          }
+        }
+      }
     },
     "Select an item" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih barang"
+          }
+        }
+      }
     },
     "Stock: %lld" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stok: %11d"
+          }
+        }
+      }
     },
     "Subtotal" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subtotal"
+          }
+        }
+      }
     },
     "Success" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Berhasil"
+          }
+        }
+      }
     },
     "The item has been successfully added to your inventory." : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Barang telah berhasil ditambahkan ke dalam inventori."
+          }
+        }
+      }
     },
     "The items have been successfully restocked." : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stok barang telah berhasil diisi."
+          }
+        }
+      }
     },
     "The price has been successfully updated." : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Harga telah berhasil diperbarui."
+          }
+        }
+      }
     },
     "Top 3 bought items" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 barang terlaris"
+          }
+        }
+      }
     },
     "Total" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total"
+          }
+        }
+      }
     },
     "Total Rp %lld" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Rp %11d"
+          }
+        }
+      }
     },
     "Transaction History" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat Transaksi"
+          }
+        }
+      }
     },
     "Transactions" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transaksi"
+          }
+        }
+      }
     },
     "Warning" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Peringatan"
+          }
+        }
+      }
     },
     "x%lld" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "x%11d"
+          }
+        }
+      }
     },
     "Year" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tahun"
+          }
+        }
+      }
     },
     "You do not have any items in your inventory" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anda tidak memiliki barang tersisa di dalam inventori"
+          }
+        }
+      }
     },
     "You do not have any items to calculate" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anda tidak memiliki barang untuk dikalkulasi"
+          }
+        }
+      }
     },
     "Your input have been saved!" : {
-
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Input anda berhasil tersimpan!"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
