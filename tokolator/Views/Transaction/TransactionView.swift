@@ -93,7 +93,7 @@ struct MonthPickerView: View {
                     Spacer()
                     Text("\(formattedMonth)")
                         .fontWeight(.bold)
-                        .foregroundColor(.white)
+                        .foregroundColor(.primary)
                     Spacer()
                 }
                 .padding(.all)
