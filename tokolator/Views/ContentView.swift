@@ -7,12 +7,6 @@ struct ContentView: View {
 
     var body: some View {
         TabView {
-            InventoryView(inventoryViewModel: .init(modelContext: modelContext))
-                .tabItem {
-                    Text("Inventory")
-                    Image(systemName: "bag")
-                }
-            
             CashierView(modelContext: modelContext)
                 .tabItem {
                     Text("Calculator")
@@ -20,6 +14,12 @@ struct ContentView: View {
                 }
                 .toolbarBackground(.visible, for: .tabBar)
                 .toolbarBackground(.tabBarBG, for: .tabBar)
+            
+            InventoryView(inventoryViewModel: .init(modelContext: modelContext))
+                .tabItem {
+                    Text("Inventory")
+                    Image(systemName: "bag")
+                }
             
             TransactionView(modelContext: modelContext)
                 .tabItem {
