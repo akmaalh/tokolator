@@ -13,55 +13,66 @@ struct AddItemView: View {
     
     var body: some View {
         NavigationView {
-            Form {
-                Section(header: Text("Item Details")) {
-                    HStack {
-                        Text("Name")
-                            .frame(width: 80, alignment: .leading)
-                        TextField("Name", text: $addItemViewModel.name)
-                            .focused($focusedField, equals: .name)
-                    }
-                    
-                    HStack {
-                        Text("Price (Rp)")
-                            .frame(width: 80, alignment: .leading)
-                        TextField("Price Sell Per Item", text: $addItemViewModel.price)
-                            .focused($focusedField, equals: .price)
-                            .keyboardType(.numberPad)
-                            .onReceive(Just(addItemViewModel.price)) { newValue in
-                                let filtered = newValue.filter { "0123456789".contains($0) }
-                                if filtered != newValue {
-                                    self.addItemViewModel.price = filtered
+            VStack {
+                Form {
+                    Section(header: Text("Item Details")) {
+                        HStack {
+                            Text("Name")
+                                .frame(width: 80, alignment: .leading)
+                            TextField("Name", text: $addItemViewModel.name)
+                                .focused($focusedField, equals: .name)
+                        }
+                        
+                        HStack {
+                            Text("Price (Rp)")
+                                .frame(width: 80, alignment: .leading)
+                            TextField("Price Sell Per Item", text: $addItemViewModel.price)
+                                .focused($focusedField, equals: .price)
+                                .keyboardType(.numberPad)
+                                .onReceive(Just(addItemViewModel.price)) { newValue in
+                                    let filtered = newValue.filter { "0123456789".contains($0) }
+                                    if filtered != newValue {
+                                        self.addItemViewModel.price = filtered
+                                    }
                                 }
-                            }
-                    }
-                }
-                
-                Section(header: Text("Item Image")) {
-                    if let imageData = addItemViewModel.selectedPhotoData,
-                       let uiImage = UIImage(data: imageData) {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(maxWidth: .infinity, maxHeight: 300)
+                        }
                     }
                     
-                    PhotosPicker(selection: $addItemViewModel.selectedPhoto, matching: .images, photoLibrary: .shared()) {
-                        if addItemViewModel.selectedPhoto == nil {
-                            HStack {
-                                Image(systemName: "photo")
-                                Text("Add Image")
-                            }
-                        } else {
-                            HStack {
-                                Image(systemName: "photo")
-                                Text("Change Image")
+                    Section(header: Text("Item Image")) {
+                        if let imageData = addItemViewModel.selectedPhotoData,
+                           let uiImage = UIImage(data: imageData) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxWidth: .infinity, maxHeight: 250)
+                        }
+                        
+                        PhotosPicker(selection: $addItemViewModel.selectedPhoto, matching: .images, photoLibrary: .shared()) {
+                            if addItemViewModel.selectedPhoto == nil {
+                                HStack {
+                                    Image(systemName: "photo.badge.plus")
+                                    Text("Add Image")
+                                }
+                            } else {
+                                HStack {
+                                    Image(systemName: "photo.badge.plus")
+                                    Text("Change Image")
+                                }
                             }
                         }
                     }
                 }
                 
-                Section {
+                HStack(spacing: 23) {
+                    Button(action: {
+                        presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Label("CANCEL", systemImage: "xmark.circle")
+                            .frame(maxWidth: .infinity)
+                            .font(.system(size: 20, weight: .regular))
+                    }
+                    .buttonStyle(CustomButtonStyle(color: .red))
+                    
                     Button(action: {
                         guard let priceValue = Int(addItemViewModel.price), let photoData = addItemViewModel.selectedPhotoData else {
                             return
@@ -70,13 +81,12 @@ struct AddItemView: View {
                         inventoryViewModel.addItem(name: addItemViewModel.name, price: priceValue, photo: photoData)
                         addItemViewModel.showAlert = true
                     }) {
-                        HStack {
-                            Image(systemName: "plus")
-                            Text("Add Item to Inventory")
-                        }
+                        Label("SAVE", systemImage: "checkmark.circle")
+                            .frame(maxWidth: .infinity)
+                            .font(.system(size: 20, weight: .regular))
                     }
-                    .tint(Color.green)
                     .disabled(!addItemViewModel.checkForm())
+                    .buttonStyle(CustomButtonStyle(color: .green))
                     .alert(isPresented: $addItemViewModel.showAlert) {
                         Alert(
                             title: Text("Item Added"),
@@ -87,11 +97,10 @@ struct AddItemView: View {
                         )
                     }
                 }
+                .padding(.horizontal, 40)
+                .padding(.bottom, 64)
             }
             .navigationTitle("Add New Item")
-            .navigationBarItems(leading: Button("Cancel") {
-                presentationMode.wrappedValue.dismiss()
-            })
             .task(id: addItemViewModel.selectedPhoto) {
                 if let data = try? await addItemViewModel.selectedPhoto?.loadTransferable(type: Data.self) {
                     addItemViewModel.selectedPhotoData = data

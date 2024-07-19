@@ -82,6 +82,7 @@
       }
     },
     "Add Item to Inventory" : {
+      "extractionState" : "stale",
       "localizations" : {
         "id" : {
           "stringUnit" : {
